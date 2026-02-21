@@ -20,15 +20,27 @@ jobs:
           # Fetch all commit history for full Git operations
           fetch-depth: 0
 
+      # 验证 DEPLOY_KEY 是否存在
+      - name: Verify DEPLOY_KEY exists
+        run: |
+          if [ -z "${{ secrets.DEPLOY_KEY }}" ]; then
+            echo "ERROR: DEPLOY_KEY secret is not set. Please configure the DEPLOY_KEY secret in your repository settings."
+            exit 1
+          fi
+          echo "DEPLOY_KEY is configured"
+
       # 设置 SSH
       # Setup SSH
       - name: Setup SSH for git access
         uses: webfactory/ssh-agent@v0.8.0
         with:
           ssh-private-key: ${{ secrets.DEPLOY_KEY }}
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_KEY }}
+        continue-on-error: true
 
-      # 部署到另一个仓库
-      # Deploy to another repository
+      # 部署到另一个仓库并触发 GitHub Pages 构建
+      # Deploy to another repository and trigger GitHub Pages build
       - name: Push to another repository
         run: |
           git config --global user.name 'github-actions[bot]'
@@ -38,11 +50,17 @@ jobs:
           git clone git@github.com:Luo202044/ClassIn.git --branch gh-pages target_repo
           cd target_repo
           
+          # 保存原始的 .nojekyll 和 CNAME 文件（如果存在）以防丢失
+          cp .nojekyll ../.nojekyll.backup 2>/dev/null || echo ".nojekyll not found"
+          cp CNAME ../CNAME.backup 2>/dev/null || echo "CNAME not found"
+          
           # 清空目标仓库内容（保留 .git 文件夹）
           git rm -rf .
-          # 确保 .nojekyll 文件保留，这对于 GitHub Pages 很重要
-          touch .nojekyll
-          git add .nojekyll
+          
+          # 恢复 .nojekyll 和 CNAME 文件
+          cp ../.nojekyll.backup .nojekyll 2>/dev/null || echo "Creating new .nojekyll"
+          touch .nojekyll  # 确保 .nojekyll 文件存在，这对于 GitHub Pages 很重要
+          cp ../CNAME.backup CNAME 2>/dev/null || echo "CNAME file not restored"
           
           # 从当前工作目录复制所有文件到目标仓库
           cd ..
@@ -53,3 +71,17 @@ jobs:
           git add .
           git commit -m "Deploy from ${{ github.repository }} ${{ github.sha }}" || echo "No changes to commit"
           git push origin gh-pages
+          
+      # 等待 GitHub Pages 构建完成
+      - name: Wait for GitHub Pages build
+        run: |
+          echo "Waiting for GitHub Pages to build..."
+          sleep 10  # 等待一段时间让 GitHub Pages 开始构建
+          
+      # 验证 GitHub Pages 是否可访问
+      - name: Verify GitHub Pages deployment
+        run: |
+          # 获取目标仓库的 GitHub Pages URL
+          PAGES_URL="https://luo202044.github.io/ClassIn"
+          echo "Checking if GitHub Pages is available at $PAGES_URL"
+          curl -f --retry 5 --retry-delay 10 "$PAGES_URL" || echo "GitHub Pages might still be building, please check manually"
