@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关于 - Cottie</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif; }
+        body { background-color: #FFE6F2; color: #5A003A; line-height: 1.6; min-height: 100vh; }
+        .header { background: linear-gradient(135deg, #FF66B2, #FF3385); padding: 1.2rem 5%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 12px rgba(255, 102, 178, 0.2); position: sticky; top: 0; z-index: 100; }
+        .logo { display: flex; align-items: center; gap: 12px; }
+        .logo i { font-size: 2.2rem; color: white; }
+        .logo h1 { color: white; font-size: 1.8rem; font-weight: 700; letter-spacing: 1px; }
+        .nav-links a { color: white; text-decoration: none; margin-left: 2rem; font-weight: 600; font-size: 1.1rem; transition: all 0.3s; padding: 8px 12px; border-radius: 20px; }
+        .nav-links a:hover { background-color: rgba(255, 255, 255, 0.2); transform: translateY(-2px); }
+        .container { max-width: 1000px; margin: 2rem auto; padding: 2rem; }
+        .hero { text-align: center; padding: 3rem 1rem; background-color: #FFB6D9; border-radius: 20px; margin-bottom: 3rem; box-shadow: 0 8px 20px rgba(255, 102, 178, 0.15); }
+        .hero h2 { font-size: 2.5rem; margin-bottom: 1rem; color: #B3005E; }
+        .hero p { font-size: 1.2rem; max-width: 800px; margin: 0 auto 1.5rem; }
+        .about-section { background: white; border-radius: 15px; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 5px 15px rgba(255, 102, 178, 0.1); }
+        .about-section h3 { color: #B3005E; font-size: 1.8rem; margin-bottom: 1.5rem; border-bottom: 2px solid #FFB6D9; padding-bottom: 0.5rem; }
+        .team-members { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem; }
+        .member-card { text-align: center; background: #FFF0F7; border-radius: 15px; padding: 1.5rem; transition: transform 0.3s; }
+        .member-card:hover { transform: translateY(-5px); }
+        .member-img { width: 100px; height: 100px; border-radius: 50%; background: #FFB6D9; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; font-size: 3rem; color: #B3005E; overflow: hidden; }
+        .member-img img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+        .member-name { font-size: 1.3rem; color: #B3005E; margin: 0.5rem 0; }
+        .member-role { color: #FF3385; font-weight: 600; }
+        .member-contact { margin-top: 0.5rem; }
+        .member-contact a { color: #FF3385; text-decoration: none; }
+        .member-contact a:hover { text-decoration: underline; }
+        .contact-info { margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #FFB6D9; }
+        .contact-item { display: flex; align-items: center; margin-bottom: 0.8rem; }
+        .contact-item i { width: 30px; color: #FF3385; }
+        .footer { background: linear-gradient(135deg, #FF66B2, #FF3385); color: white; padding: 2.5rem 5%; text-align: center; margin-top: 3rem; }
+        .section-title { color: #B3005E; font-size: 2rem; margin: 2.5rem 0 1.5rem; padding-bottom: 10px; border-bottom: 3px solid #FFB6D9; }
+        
+        @media (max-width: 768px) {
+            .header { flex-direction: column; gap: 1rem; }
+            .nav-links a { margin: 0 0.5rem; font-size: 1rem; }
+            .hero h2 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <i class="fas fa-info-circle"></i>
+            <h1>关于 Cottie</h1>
+        </div>
+        <nav class="nav-links">
+            <a href="../index.html"><i class="fas fa-home"></i> 首页</a>
+            <a href="center.html"><i class="fas fa-th-large"></i> 资源分类</a>
+        </nav>
+    </header>
+    
+    <main class="container">
+        <section class="hero">
+            <h2>Cottie</h2>
+            <p>面向ClassIn用户的公共导航平台</p>
+        </section>
+        
+        <section class="about-section">
+            <h3><i class="fas fa-info-circle"></i> 关于我们</h3>
+            <p>Cottie是一个面向ClassIn用户的公共导航平台，主要提供ClassIn群聊链接的分类导航服务。我们致力于为用户提供便捷的ClassIn群组访问方式，以及相关的资源和服务链接。</p>
+            <p>项目创建于2026年，旨在为ClassIn用户建立一个集中、有序的导航入口，帮助用户快速找到所需的群组和资源。</p>
+        </section>
+        
+        <section class="about-section">
+            <h3><i class="fas fa-users"></i> 团队成员</h3>
+            <div class="team-members">
+                <div class="member-card">
+                    <div class="member-img">
+                        <img src="../images/user1.jpg" alt="开发者1">
+                    </div>
+                    <div class="member-name">开发者1</div>
+                    <div class="member-role">前端开发</div>
+                    <div class="member-contact">
+                        <a href="mailto:user1@example.com"><i class="fas fa-envelope"></i> user1@example.com</a>
+                    </div>
+                </div>
+                
+                <div class="member-card">
+                    <div class="member-img">
+                        <img src="../images/user2.jpg" alt="开发者2">
+                    </div>
+                    <div class="member-name">开发者2</div>
+                    <div class="member-role">后端开发</div>
+                    <div class="member-contact">
+                        <a href="mailto:user2@example.com"><i class="fas fa-envelope"></i> user2@example.com</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="about-section">
+            <h3><i class="fas fa-envelope"></i> 联系我们</h3>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>邮箱: luoqing5203789@outlook.com</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-globe"></i>
+                    <span>网站: classin.luoqing5203789.dpdns.org</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-code-branch"></i>
+                    <span>项目源码: GitHub</span>
+                </div>
+            </div>
+        </section>
+        
+        <section class="about-section">
+            <h3><i class="fas fa-shield-alt"></i> 隐私政策</h3>
+            <p>我们重视您的隐私。Cottie不会收集或存储任何用户的个人信息。我们提供的所有服务都是匿名的，不会追踪用户的活动。</p>
+            <p>我们仅提供外部链接的导航服务，对于外部链接的内容不负任何责任。请在访问外部链接时注意保护个人隐私和信息安全。</p>
+        </section>
+    </main>
+    
+    <footer class="footer">
+        <p>© 2025-2026 四季亭. 版权所有.</p>
+        <p>为ClassIn用户提供的公共导航平台</p>
+    </footer>
+</body>
+</html>

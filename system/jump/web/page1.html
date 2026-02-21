@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网页跳转 - Cottie</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif; }
+        body { background-color: #FFE6F2; color: #5A003A; line-height: 1.6; min-height: 100vh; }
+        .header { background: linear-gradient(135deg, #FF66B2, #FF3385); padding: 1.2rem 5%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 12px rgba(255, 102, 178, 0.2); position: sticky; top: 0; z-index: 100; }
+        .logo { display: flex; align-items: center; gap: 12px; }
+        .logo i { font-size: 2.2rem; color: white; }
+        .logo h1 { color: white; font-size: 1.8rem; font-weight: 700; letter-spacing: 1px; }
+        .nav-links a { color: white; text-decoration: none; margin-left: 2rem; font-weight: 600; font-size: 1.1rem; transition: all 0.3s; padding: 8px 12px; border-radius: 20px; }
+        .nav-links a:hover { background-color: rgba(255, 255, 255, 0.2); transform: translateY(-2px); }
+        .container { max-width: 1000px; margin: 2rem auto; padding: 2rem; }
+        .hero { text-align: center; padding: 3rem 1rem; background-color: #FFB6D9; border-radius: 20px; margin-bottom: 3rem; box-shadow: 0 8px 20px rgba(255, 102, 178, 0.15); }
+        .hero h2 { font-size: 2.5rem; margin-bottom: 1rem; color: #B3005E; }
+        .hero p { font-size: 1.2rem; max-width: 800px; margin: 0 auto 1.5rem; }
+        .jump-section { background: white; border-radius: 15px; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 5px 15px rgba(255, 102, 178, 0.1); }
+        .jump-section h3 { color: #B3005E; font-size: 1.8rem; margin-bottom: 1.5rem; border-bottom: 2px solid #FFB6D9; padding-bottom: 0.5rem; }
+        .jump-categories { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
+        .jump-category { background: #FFF0F7; border-radius: 12px; padding: 1.5rem; transition: transform 0.3s; }
+        .jump-category:hover { transform: translateY(-5px); }
+        .jump-category h4 { color: #FF3385; margin-bottom: 1rem; display: flex; align-items: center; }
+        .jump-category h4 i { margin-right: 10px; }
+        .jump-links { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+        .jump-link { display: inline-block; background: linear-gradient(135deg, #FF66B2, #FF3385); color: white; padding: 8px 16px; border-radius: 20px; text-decoration: none; font-size: 0.9rem; transition: all 0.3s; }
+        .jump-link:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); }
+        .footer { background: linear-gradient(135deg, #FF66B2, #FF3385); color: white; padding: 2.5rem 5%; text-align: center; margin-top: 3rem; }
+        
+        @media (max-width: 768px) {
+            .header { flex-direction: column; gap: 1rem; }
+            .nav-links a { margin: 0 0.5rem; font-size: 1rem; }
+            .hero h2 { font-size: 2rem; }
+            .jump-categories { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <i class="fas fa-globe"></i>
+            <h1>网页跳转服务</h1>
+        </div>
+        <nav class="nav-links">
+            <a href="../../index.html"><i class="fas fa-home"></i> 首页</a>
+            <a href="../web/center.html"><i class="fas fa-th-large"></i> 资源分类</a>
+        </nav>
+    </header>
+    
+    <main class="container">
+        <section class="hero">
+            <h2>网页跳转服务</h2>
+            <p>提供各类网站的快速跳转服务</p>
+        </section>
+        
+        <section class="jump-section">
+            <h3><i class="fas fa-star"></i> 热门网站</h3>
+            <p>以下是我们为您精选的常用网站，点击链接即可快速访问：</p>
+            <div class="jump-categories">
+                <div class="jump-category">
+                    <h4><i class="fas fa-search"></i> 搜索引擎</h4>
+                    <div class="jump-links">
+                        <a href="https://www.google.com" target="_blank">Google</a>
+                        <a href="https://www.baidu.com" target="_blank">百度</a>
+                        <a href="https://cn.bing.com" target="_blank">必应</a>
+                    </div>
+                </div>
+                
+                <div class="jump-category">
+                    <h4><i class="fas fa-video"></i> 视频网站</h4>
+                    <div class="jump-links">
+                        <a href="https://www.youtube.com" target="_blank">YouTube</a>
+                        <a href="https://www.bilibili.com" target="_blank">哔哩哔哩</a>
+                        <a href="https://v.qq.com" target="_blank">腾讯视频</a>
+                    </div>
+                </div>
+                
+                <div class="jump-category">
+                    <h4><i class="fas fa-book"></i> 学习平台</h4>
+                    <div class="jump-links">
+                        <a href="https://www.classin.com" target="_blank">ClassIn</a>
+                        <a href="https://www.icourse163.org" target="_blank">中国大学MOOC</a>
+                        <a href="https://www.xuetangx.com" target="_blank">学堂在线</a>
+                    </div>
+                </div>
+                
+                <div class="jump-category">
+                    <h4><i class="fas fa-code"></i> 开发工具</h4>
+                    <div class="jump-links">
+                        <a href="https://github.com" target="_blank">GitHub</a>
+                        <a href="https://stackoverflow.com" target="_blank">Stack Overflow</a>
+                        <a href="https://www.w3schools.com" target="_blank">W3Schools</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="jump-section">
+            <h3><i class="fas fa-info-circle"></i> 服务说明</h3>
+            <p>我们的网页跳转服务旨在为您提供快速、安全的网站访问入口。所有链接均经过筛选，确保其可靠性。</p>
+            <p>如果您想推荐新的网站或发现链接失效，请通过以下方式联系我们：</p>
+            <ul style="margin-top: 1rem; margin-left: 1.5rem;">
+                <li>邮箱: luoqing5203789@outlook.com</li>
+                <li>网站: classin.luoqing5203789.dpdns.org</li>
+            </ul>
+        </section>
+    </main>
+    
+    <footer class="footer">
+        <p>© 2025-2026 四季亭. 网页跳转服务.</p>
+        <p>为ClassIn用户提供的公共导航平台</p>
+    </footer>
+</body>
+</html>

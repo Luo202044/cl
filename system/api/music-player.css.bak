@@ -1,0 +1,136 @@
+/* music-player.css - 音乐播放器控件样式 - 与center.html保持一致的样式 */
+
+/* 音乐播放器样式 */
+#music-player-container {
+    position: fixed;
+    top: 50%;
+    right: -300px;
+    width: 300px;
+    height: 400px;
+    background: linear-gradient(135deg, #FF66B2, #FF3385);
+    border-radius: 10px 0 0 10px;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+    transition: right 0.3s ease;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+}
+
+#music-player-container.collapsed {
+    right: 0;
+}
+
+#player-handle {
+    position: absolute;
+    left: -40px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 80px;
+    background: linear-gradient(135deg, #FF66B2, #FF3385);
+    border-radius: 10px 0 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    cursor: pointer;
+    box-shadow: -3px 0 8px rgba(0, 0, 0, 0.2);
+}
+
+#player-content {
+    padding: 15px;
+    color: white;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.player-controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.player-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s;
+}
+
+.player-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.player-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.progress-container {
+    margin: 10px 0;
+}
+
+#progress-bar {
+    width: 100%;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+#progress {
+    height: 100%;
+    width: 0%;
+    background: white;
+    transition: width 0.1s;
+}
+
+.time-display {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    margin-top: 5px;
+}
+
+#current-song-info {
+    text-align: center;
+    margin: 10px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#player-status {
+    text-align: center;
+    font-size: 0.8rem;
+    margin-top: 5px;
+    opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+    #music-player-container {
+        width: 100%;
+        height: 120px;
+        top: auto;
+        bottom: 0;
+        right: -100%;
+        border-radius: 10px 10px 0 0;
+    }
+    
+    #music-player-container.collapsed {
+        right: 0;
+    }
+    
+    #player-handle {
+        display: none;
+    }
+}

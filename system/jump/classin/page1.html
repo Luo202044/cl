@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClassIn群聊组别1 - Cottie</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif; }
+        body { background-color: #FFE6F2; color: #5A003A; line-height: 1.6; min-height: 100vh; }
+        .header { background: linear-gradient(135deg, #FF66B2, #FF3385); padding: 1.2rem 5%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 12px rgba(255, 102, 178, 0.2); position: sticky; top: 0; z-index: 100; }
+        .logo { display: flex; align-items: center; gap: 12px; }
+        .logo i { font-size: 2.2rem; color: white; }
+        .logo h1 { color: white; font-size: 1.8rem; font-weight: 700; letter-spacing: 1px; }
+        .nav-links a { color: white; text-decoration: none; margin-left: 2rem; font-weight: 600; font-size: 1.1rem; transition: all 0.3s; padding: 8px 12px; border-radius: 20px; }
+        .nav-links a:hover { background-color: rgba(255, 255, 255, 0.2); transform: translateY(-2px); }
+        .container { max-width: 1000px; margin: 2rem auto; padding: 2rem; }
+        .hero { text-align: center; padding: 3rem 1rem; background-color: #FFB6D9; border-radius: 20px; margin-bottom: 3rem; box-shadow: 0 8px 20px rgba(255, 102, 178, 0.15); }
+        .hero h2 { font-size: 2.5rem; margin-bottom: 1rem; color: #B3005E; }
+        .hero p { font-size: 1.2rem; max-width: 800px; margin: 0 auto 1.5rem; }
+        .groups-section { background: white; border-radius: 15px; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 5px 15px rgba(255, 102, 178, 0.1); }
+        .groups-section h3 { color: #B3005E; font-size: 1.8rem; margin-bottom: 1.5rem; border-bottom: 2px solid #FFB6D9; padding-bottom: 0.5rem; }
+        .group-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
+        .group-card { background: #FFF0F7; border-radius: 12px; padding: 1.5rem; transition: transform 0.3s; border-left: 4px solid #FF66B2; }
+        .group-card:hover { transform: translateY(-5px); box-shadow: 0 8px 16px rgba(255, 102, 178, 0.2); }
+        .group-title { color: #B3005E; font-size: 1.3rem; margin-bottom: 0.5rem; display: flex; align-items: center; }
+        .group-title i { margin-right: 10px; }
+        .group-id { color: #FF3385; font-size: 0.9rem; margin-bottom: 1rem; }
+        .group-desc { color: #5A003A; margin-bottom: 1rem; }
+        .join-btn { display: inline-block; background: linear-gradient(135deg, #4CAF50, #45a049); color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s; }
+        .join-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); }
+        .footer { background: linear-gradient(135deg, #FF66B2, #FF3385); color: white; padding: 2.5rem 5%; text-align: center; margin-top: 3rem; }
+        
+        @media (max-width: 768px) {
+            .header { flex-direction: column; gap: 1rem; }
+            .nav-links a { margin: 0 0.5rem; font-size: 1rem; }
+            .hero h2 { font-size: 2rem; }
+            .group-list { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <i class="fas fa-mobile-alt"></i>
+            <h1>ClassIn群聊组别1</h1>
+        </div>
+        <nav class="nav-links">
+            <a href="../../../index.html"><i class="fas fa-home"></i> 首页</a>
+            <a href="../../../about.html"><i class="fas fa-th-large"></i> 关于</a>
+        </nav>
+    </header>
+    
+    <main class="container">
+        <section class="hero">
+            <h2>ClassIn群聊组别1</h2>
+            <p>ClassIn群聊</p>
+        </section>
+        
+        <section class="groups-section">
+            <h3><i class="fas fa-users"></i> 群聊列表</h3>
+            <div class="group-list">
+                <div class="group-card">
+                    <div class="group-title">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                        <span>官方项目:永久聊天群</span>
+                    </div>
+                    <div class="group-id">群号: 281864003</div>
+                    <div class="group-desc">1</div>
+                    <a href="https://www.eeo.cn/s/a/?cid=281864003" target="_blank" class="join-btn">加入群聊 <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="group-card">
+                    <div class="group-title">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>我不是来救你的，我是来爱你的——《全球高考》</span>
+                    </div>
+                    <div class="group-id">群号: 291566411</div>
+                    <div class="group-desc">聊天群</div>
+                    <a href="https://www.eeo.cn/s/a/?cid=291566411" target="_blank" class="join-btn">加入群聊 <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="group-card">
+                    <div class="group-title">
+                        <i class="fas fa-language"></i>
+                        <span>班级名：皇宫</span>
+                    </div>
+                    <div class="group-id">群号: 279289745</div>
+                    <div class="group-desc">近似于古代制度的群聊</div>
+                    <a href="https://www.eeo.cn/s/a/?cid=210079055" target="_blank" class="join-btn">加入群聊 <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="group-card">
+                    <div class="group-title">
+                        <i class="fas fa-code"></i>
+                        <span>班级名：开始学</span>
+                    </div>
+                    <div class="group-id">群号: 295170341</div>
+                    <div class="group-desc">欢迎各位同学加入 本群分享学习资料以及学习心得+方法</div>
+                    <a href="https://www.classin.com/s/a/?cid=295170341" target="_blank" class="join-btn">加入群聊 <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="group-card">
+                    <div class="group-title">
+                        <i class="fas fa-paint-brush"></i>
+                        <span>班级名：有人陪我熬夜吗</span>
+                    </div>
+                    <div class="group-id">群号: 294679959</div>
+                    <div class="group-desc">1</div>
+                    <a href="https://www.eeo.cn/s/a/?cid=294679959" target="_blank" class="join-btn">加入群聊 <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="group-card">
+                    <div class="group-title">
+                        <i class="fas fa-music"></i>
+                        <span>班级名：₍˄·͈༝·͈˄*₎◞ ̑</span>
+                    </div>
+                    <div class="group-id">群号: 292245095</div>
+                    <div class="group-desc">：₍˄·͈༝·͈˄*₎◞ ̑̑</div>
+                    <a href="https://www.eeo.cn/s/a/?cid=292245095" target="_blank" class="join-btn">加入群聊 <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </section>
+        
+        <section class="groups-section">
+            <h3><i class="fas fa-info-circle"></i> 加入须知</h3>
+            <p>在加入任何群聊之前，请仔细阅读以下须知：</p>
+            <ul style="margin-top: 1rem; margin-left: 1.5rem;">
+                <li>遵守群规，尊重群内其他成员</li>
+                <li>如遇到问题，可联系群管理员</li>
+            </ul>
+        </section>
+    </main>
+    
+    <footer class="footer">
+        <p>© 2025-2026 四季亭. ClassIn群聊组别1.</p>
+        <p>为ClassIn用户提供的公共导航平台</p>
+    </footer>
+</body>
+</html>

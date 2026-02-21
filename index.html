@@ -1,0 +1,307 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cottie | 首页</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="system/api/music-player.css">
+    <style>
+        /* 以下是原有页面样式，保持不变 */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif; }
+        body { background-color: #FFE6F2; color: #5A003A; line-height: 1.6; min-height: 100vh; }
+        .header { background: linear-gradient(135deg, #FF66B2, #FF3385); padding: 1.2rem 5%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 12px rgba(255, 102, 178, 0.2); position: sticky; top: 0; z-index: 100; }
+        .logo { display: flex; align-items: center; gap: 12px; }
+        .logo i { font-size: 2.2rem; color: white; }
+        .logo h1 { color: white; font-size: 1.8rem; font-weight: 700; letter-spacing: 1px; }
+        .nav-links a { color: white; text-decoration: none; margin-left: 2rem; font-weight: 600; font-size: 1.1rem; transition: all 0.3s; padding: 8px 12px; border-radius: 20px; }
+        .nav-links a:hover { background-color: rgba(255, 255, 255, 0.2); transform: translateY(-2px); }
+        .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+        .download-jump-card {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 8px 20px rgba(76, 175, 80, 0.2);
+            text-align: center;
+            transition: all 0.3s;
+        }
+        .download-jump-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(76, 175, 80, 0.3);
+        }
+        .download-jump-card h2 {
+            font-size: 2rem;
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        .download-jump-card a {
+            display: inline-block;
+            background-color: white;
+            color: #4CAF50;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-top: 1rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .download-jump-card a:hover {
+            background-color: #f0fff0;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+        .hero {
+            text-align: center;
+            padding: 3rem 2rem;
+            background-color: #FFB6D9;
+            border-radius: 20px;
+            margin-bottom: 3rem;
+            box-shadow: 0 8px 20px rgba(255, 102, 178, 0.15);
+        }
+        .hero h2 { font-size: 2.5rem; margin-bottom: 1rem; color: #B3005E; }
+        .hero p { font-size: 1.2rem; max-width: 800px; margin: 0 auto 1.5rem; }
+        .section-title {
+            color: #B3005E;
+            font-size: 2rem;
+            margin: 2.5rem 0 1.5rem;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #FFB6D9;
+        }
+        .announcement-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        .announcement-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(255, 102, 178, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 6px solid #FF66B2;
+        }
+        .announcement-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 102, 178, 0.2);
+        }
+        .announcement-card h3 {
+            color: #B3005E;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .announcement-card p {
+            color: #5A003A;
+            margin-bottom: 0.5rem;
+        }
+        .pink-button-card {
+            background: linear-gradient(135deg, #FF66B2, #FF3385) !important;
+            border-left: 6px solid #FFB6D9 !important;
+            text-align: center;
+        }
+        .pink-button-card h3 {
+            color: white !important;
+        }
+        .pink-button-card p {
+            color: rgba(255, 255, 255, 0.9) !important;
+        }
+        .pink-button {
+            display: inline-block;
+            background-color: white;
+            color: #FF3385;
+            padding: 10px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-top: 1rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            border: 2px solid white;
+        }
+        .pink-button:hover {
+            background-color: #FFB6D9;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+        .pink-button i {
+            margin-left: 8px;
+        }
+        .footer {
+            background: linear-gradient(135deg, #FF66B2, #FF3385);
+            color: white;
+            padding: 2.5rem 5%;
+            text-align: center;
+            margin-top: 3rem;
+        }
+        @media (max-width: 768px) {
+            .header { flex-direction: column; gap: 1rem; }
+            .nav-links a { margin: 0 0.5rem; font-size: 1rem; }
+            .hero h2 { font-size: 2rem; }
+            .download-jump-card h2 { font-size: 1.7rem; }
+            .announcement-card { padding: 1.5rem; }
+        }
+
+
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <i class="fas fa-compass"></i>
+            <h1>Cottie</h1>
+        </div>
+        <nav class="nav-links">
+            <a href="index.html"><i class="fas fa-home"></i> 首页</a>
+            <a href="about.html"><i class="fas fa-info-circle"></i> 关于</a>
+            <a href="web2/use.html"><i class="fas fa-file-contract"></i> 服务协议</a>
+        </nav>
+    </header>
+    
+    <main class="container">
+        <!-- 下载跳转卡片 -->
+        <div class="download-jump-card">
+            <h2><i class="fas fa-external-link-alt"></i> 功能跳转</h2>
+            <p>点击下方按钮跳转到功能页面</p>
+            <a href="system/web/center.html" target="_blank">点我跳转 <i class="fas fa-arrow-right"></i></a>
+        </div>
+        
+        <!-- Hero介绍部分 -->
+        <section class="hero" id="home">
+            <h2>欢迎来到 Cottie</h2>
+            <p>面向classin用户的公共平台</p>
+        </section>
+        
+        <!-- 公告部分 -->
+        <h2 class="section-title" id="announcements">公告</h2>
+        <div class="announcement-cards">
+            <!-- 公告卡片1 -->
+            <div class="announcement-card">
+                <h3><i class="fas fa-bullhorn"></i> 广告位招租</h3>
+                <p>添加收录网站链接(仅合法网站)，宣传你的群 (仅cl)</p>
+                <p>发邮件到邮箱 luoqing5203789@outlook.com</p>
+            </div>
+
+            <!-- 公告卡片2-->
+            <div class="announcement-card">
+                <h3><i class="fas fa-calendar-alt"></i> 未添加</h3>
+                <p>公告内容未添加，敬请期待后续更新。</p>
+                <p>1</p>
+            </div>
+            
+            <!-- 公告卡片3 -->
+            <div class="announcement-card">
+                <h3><i class="fas fa-calendar-alt"></i> 未添加</h3>
+                <p>公告内容未添加，敬请期待后续更新。</p>
+                <p>1</p>
+            </div>
+
+            <!-- 公告卡片4 -->
+            <div class="announcement-card">
+                <h3><i class="fas fa-calendar-alt"></i> 未添加</h3>
+                <p>公告内容未添加，敬请期待后续更新。</p>
+                <p>1</p>
+            </div>
+                         
+            <!-- 公告卡片0 - 粉色按钮卡片 -->
+            <div class="announcement-card pink-button-card">
+                <h3><i class="fas fa-newspaper"></i> 友链</h3>
+                <p>本站下载服务由雨云提供计算服务</p>
+                <a href="https://www.rainyun.com/luoqing_" target="_blank" class="pink-button">
+                    访问雨云 <i class="fas fa-external-link-alt"></i>
+                </a>
+            </div>
+        </div>
+    </main>
+    
+    <footer class="footer">
+        <p>© 2025-2026 四季亭 </p>
+    </footer>
+    
+    <!-- 音乐播放器控件 - 固定定位在浏览器右侧边缘 -->
+    <div id="music-player-container" class="collapsed">
+        <!-- 箭头按钮 - 始终可见 -->
+        <div id="player-handle" title="展开/收起播放器">
+            <i class="fas fa-chevron-left"></i>
+        </div>
+
+        <!-- 播放器主体面板 -->
+        <div id="player-content">
+            <!-- 当前播放信息 -->
+            <div id="current-song-info">
+                <div id="current-song-title">未播放音乐</div>
+                <div id="current-song-artist">-</div>
+            </div>
+            
+            <div class="progress-container">
+                <div id="progress-bar">
+                    <div id="progress"></div>
+                </div>
+                <div class="time-display">
+                    <span id="current-time-display">0:00</span>
+                    <span id="total-time-display">0:00</span>
+                </div>
+            </div>
+            
+            <div class="player-controls">
+                <button id="prev-btn" class="player-btn" title="上一首">
+                    <i class="fas fa-step-backward"></i>
+                </button>
+                <button id="play-btn" class="player-btn play-pause" title="播放">
+                    <i class="fas fa-play"></i>
+                </button>
+                <button id="next-btn" class="player-btn" title="下一首">
+                    <i class="fas fa-step-forward"></i>
+                </button>
+            </div>
+            
+            <div id="player-status">就绪</div>
+        </div>
+    </div>
+    
+    <!-- 引入音乐播放器JS -->
+    <script src="system/api/music-player.js"></script>
+    
+    <!-- 原有的脚本 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 为所有内部链接添加平滑滚动效果
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        e.preventDefault();
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // 下载跳转链接提示
+            const downloadLink = document.querySelector('.download-jump-card a');
+            if (downloadLink && downloadLink.getAttribute('href') === 'https://待设置') {
+                downloadLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    alert('下载链接尚未设置，请联系管理员进行配置。');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
