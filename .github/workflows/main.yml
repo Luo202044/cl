@@ -25,7 +25,7 @@ jobs:
       - name: Push to another repository
         uses: cpina/github-action-push-to-another-repository@main
         env:
-          API_TOKEN_GITHUB: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          API_TOKEN_GITHUB: ${{ PERSONAL_ACCESS_TOKEN }}
         with:
           source-directory: './'
           destination-github-username: 'Luo202044'  # 目标仓库用户名
