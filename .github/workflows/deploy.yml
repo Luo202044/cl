@@ -1,4 +1,4 @@
-name: Deploy to Another Repository
+name: Setup 
 
 on:
   # 手动触发部署
