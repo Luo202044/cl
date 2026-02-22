@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -174,7 +174,7 @@
         <div class="download-jump-card">
             <h2><i class="fas fa-external-link-alt"></i> 功能跳转</h2>
             <p>点击下方按钮跳转到功能页面</p>
-            <a href="system/web/center.html" target="_blank">点我跳转 <i class="fas fa-arrow-right"></i></a>
+            <a href="system/web/center.html" target="_blank" rel="noopener">点我跳转 <i class="fas fa-arrow-right"></i></a>
         </div>
         
         <!-- Hero介绍部分 -->
@@ -213,12 +213,12 @@
                 <p>公告内容未添加，敬请期待后续更新。</p>
                 <p>1</p>
             </div>
-                         
+                   
             <!-- 公告卡片0 - 粉色按钮卡片 -->
             <div class="announcement-card pink-button-card">
                 <h3><i class="fas fa-newspaper"></i> 友链</h3>
                 <p>本站下载服务由雨云提供计算服务</p>
-                <a href="https://www.rainyun.com/luoqing_" target="_blank" class="pink-button">
+                <a href="https://www.rainyun.com/luoqing_" target="_blank" rel="noopener" class="pink-button">
                     访问雨云 <i class="fas fa-external-link-alt"></i>
                 </a>
             </div>
@@ -276,7 +276,6 @@
     <!-- 原有的脚本 -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // 为所有内部链接添加平滑滚动效果
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
                     const targetId = this.getAttribute('href');
@@ -292,15 +291,6 @@
                     }
                 });
             });
-            
-            // 下载跳转链接提示
-            const downloadLink = document.querySelector('.download-jump-card a');
-            if (downloadLink && downloadLink.getAttribute('href') === 'https://待设置') {
-                downloadLink.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    alert('下载链接尚未设置，请联系管理员进行配置。');
-                });
-            }
         });
     </script>
 </body>
