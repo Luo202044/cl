@@ -277,9 +277,11 @@ document.addEventListener('DOMContentLoaded', function() {
     function togglePlayer() {
         if (musicPlayerContainer.classList.contains('collapsed')) {
             musicPlayerContainer.classList.remove('collapsed');
+            playerHandle.innerHTML = '<i class="fas fa-chevron-right"></i>';
             playerHandle.title = "收起播放器";
         } else {
             musicPlayerContainer.classList.add('collapsed');
+            playerHandle.innerHTML = '<i class="fas fa-chevron-left"></i>';
             playerHandle.title = "展开播放器";
         }
     }
@@ -357,6 +359,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 !playerHandle.contains(e.target)) {
                 
                 musicPlayerContainer.classList.add('collapsed');
+                playerHandle.innerHTML = '<i class="fas fa-chevron-left"></i>';
                 playerHandle.title = "展开播放器";
             }
         });
