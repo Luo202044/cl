@@ -6,7 +6,7 @@
     top: 50%;
     right: 0;
     transform: translateY(-50%);
-    z-index: 10000;
+    z-index: 99999;
     display: flex;
     height: 84px;        /* 原高度80px增加一点点至84px */
     transition: right 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
@@ -27,7 +27,7 @@
     cursor: pointer;
     box-shadow: -3px 5px 15px rgba(255, 102, 178, 0.3);
     transition: all 0.3s;
-    z-index: 10001;
+    z-index: 100000;
     flex-shrink: 0;
 }
 
