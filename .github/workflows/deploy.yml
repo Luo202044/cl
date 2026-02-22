@@ -1,4 +1,4 @@
-name: Setup仓库部署
+name: 部署网站工作流（gh-pages）
 
 on:
   # 手动触发部署
