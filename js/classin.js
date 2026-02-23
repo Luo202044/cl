@@ -56,6 +56,13 @@ const groupsData = {
       category: 2
     },
     {
+      name: "2026",
+      id: "295768447",
+      description: "聊天群",
+      link: "https://www.eeo.cn/s/a/?cid=295768447",
+      category: 2
+    },
+    {
       name: "聆听风的细语",
       id: "295799037",
       description: "聊天群",
