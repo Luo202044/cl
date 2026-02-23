@@ -56,6 +56,13 @@ const groupsData = {
       category: 2
     },
     {
+      name: "聆听风的细语",
+      id: "295799037",
+      description: "聊天群",
+      link: "https://www.eeo.cn/s/a/?cid=295799037",
+      category: 2
+    },
+    {
       name: "除夕特别版 洋葱新闻 Onion News",
       id: "295769095",
       description: "聊天群",
