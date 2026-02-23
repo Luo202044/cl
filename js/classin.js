@@ -15,9 +15,9 @@ const groupsData = {
     },
     {
       name: "我不是来救你的，我是来爱你的——《全球高考》",
-      id: "291566411",
+      id: "295799049",
       description: "聊天群",
-      link: "https://www.eeo.cn/s/a/?cid=291566411",
+      link: "https://www.eeo.cn/s/a/?cid=295799049",
       category: 1
     },
     {
