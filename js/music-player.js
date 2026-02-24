@@ -3,7 +3,7 @@ const CONFIG = {
     baseUrl: 'https://classinapi.pages.dev/',
     apiFile: 'api.txt',
     getApiUrl() {
-      return `${this.baseUrl}${this.apiFile}`;
+      return `${this.baseUrl}music/${this.apiFile}`;
     },
     getMusicUrl(filename) {
       return `${this.baseUrl}${encodeURIComponent(filename.trim())}`;
@@ -31,7 +31,7 @@ function getFriendlyDisplayName(filename) {
   const filenameWithoutExt = filename.replace(/\.[^/.]+$/, '');
   const normalized = filenameWithoutExt
     .replace(/[_]/g, ' ')
-    .replace(/^\d+[\s.-]*/, '')
+    .replace(/\^\d+[\s.-]*/, '')
     .replace(/\s+/g, ' ')
     .trim();
 
