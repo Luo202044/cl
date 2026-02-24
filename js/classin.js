@@ -75,6 +75,13 @@ const groupsData = {
       description: "聊天群",
       link: "https://www.classin.com/s/a/?cid=295769095",
       category: 2
+    },
+    {
+      name: "如",
+      id: "296900141",
+      description: "聊天群",
+      link: "https://www.eeo.cn/s/a/?cid=296900141",
+      category: 2
     }
   ]
 };
