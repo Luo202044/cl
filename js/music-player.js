@@ -1,6 +1,6 @@
 const CONFIG = {
   api: {
-    baseUrl: 'https://luo202044.github.io/classinapi/',
+    baseUrl: 'https://classinapi.pages.dev/',
     apiFile: 'api.txt',
     getApiUrl() {
       return `${this.baseUrl}${this.apiFile}`;
