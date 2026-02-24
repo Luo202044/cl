@@ -82,6 +82,13 @@ const groupsData = {
       description: "聊天群",
       link: "https://www.eeo.cn/s/a/?cid=296900141",
       category: 2
+    },
+    {
+      name: "😋",
+      id: "295631125",
+      description: "聊天群",
+      link: "https://www.eeo.cn/s/a/?cid=295631125",
+      category: 2
     }
   ]
 };
