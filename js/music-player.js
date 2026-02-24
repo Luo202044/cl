@@ -3,10 +3,10 @@ const CONFIG = {
     baseUrl: 'https://classinapi.pages.dev/',
     apiFile: 'api.txt',
     getApiUrl() {
-      return `${this.baseUrl}music/${this.apiFile}`;
+      return `${this.baseUrl}${this.apiFile}`;
     },
     getMusicUrl(filename) {
-      return `${this.baseUrl}${encodeURIComponent(filename.trim())}`;
+      return `${this.baseUrl}music/${encodeURIComponent(filename.trim())}`;
     }
   }
 };
