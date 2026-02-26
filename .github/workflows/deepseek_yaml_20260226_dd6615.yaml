@@ -1,0 +1,89 @@
+name: 部署网站工作流（gh-pages）
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout main branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # 构建 VuePress 站点
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Build VuePress site
+        run: npm run build
+
+      - name: Verify DEPLOY_KEY exists
+        run: |
+          if [ -z "${{ secrets.DEPLOY_KEY }}" ]; then
+            echo "ERROR: DEPLOY_KEY secret is not set. Please configure the DEPLOY_KEY secret in your repository settings."
+            exit 1
+          fi
+          echo "DEPLOY_KEY is configured"
+
+      - name: Setup SSH for git access
+        uses: webfactory/ssh-agent@v0.8.0
+        with:
+          ssh-private-key: ${{ secrets.DEPLOY_KEY }}
+
+      - name: Push to another repository (only dist)
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          
+          mkdir temp_target
+          cd temp_target
+          
+          # 克隆目标仓库的 gh-pages 分支
+          git clone git@github.com:Luo202044/ClassIn.git --branch gh-pages .
+          
+          # 备份可能存在的 .nojekyll 和 CNAME 文件
+          cp .nojekyll ../.nojekyll.backup 2>/dev/null || echo ".nojekyll not found"
+          cp CNAME ../CNAME.backup 2>/dev/null || echo "CNAME not found"
+          
+          # 清空目标分支内容（保留 .git）
+          git rm -rf .
+          
+          # 恢复备份的关键文件
+          cp ../.nojekyll.backup .nojekyll 2>/dev/null || echo "Creating new .nojekyll"
+          touch .nojekyll  # 确保 .nojekyll 存在
+          cp ../CNAME.backup CNAME 2>/dev/null || echo "CNAME file not restored"
+          
+          # 返回工作区根目录
+          cd ..
+          
+          # 仅将构建产物（dist 目录）复制到目标仓库
+          # 注意：dist/ 结尾的斜杠表示复制目录内容到目标根目录，而不是创建 dist 子目录
+          rsync -av --exclude='.git' --exclude='temp_target' dist/ temp_target/
+          
+          # 进入目标仓库并提交推送
+          cd temp_target
+          git add .
+          git commit -m "Deploy from ${{ github.repository }} ${{ github.sha }}" || echo "No changes to commit"
+          git push origin gh-pages
+          
+      - name: Wait for GitHub Pages build
+        run: |
+          echo "Waiting for GitHub Pages to build..."
+          sleep 10
+          
+      - name: Verify GitHub Pages deployment
+        run: |
+          PAGES_URL="https://luo202044.github.io/ClassIn"
+          echo "Checking if GitHub Pages is available at $PAGES_URL"
+          curl -f --retry 5 --retry-delay 10 "$PAGES_URL" || echo "GitHub Pages might still be building, please check manually"
