@@ -7,11 +7,67 @@
   ],
   "groups": [
     {
-      "name": "bilibili",
-      "id": "bilibili"",
-      "description": "1",
-      "link": "https://www.bilibili.com",
+      "name": "官方项目:永久聊天群",
+      "id": "281864003",
+      "description": "官方项目永久聊天群",
+      "link": "https://www.eeo.cn/s/a/?cid=281864003",
       "category": 1
+    },
+    {
+      "name": "皇宫",
+      "id": "279289745",
+      "description": "近似于古代制度的群聊",
+      "link": "https://www.eeo.cn/s/a/?cid=210079055",
+      "category": 1
+    },
+    {
+      "name": "开始学",
+      "id": "295170341",
+      "description": "欢迎各位同学加入 本群分享学习资料以及学习心得+方法",
+      "link": "https://www.classin.com/s/a/?cid=295170341",
+      "category": 1
+    },
+    {
+      "name": "有人陪我熬夜吗",
+      "id": "294679959",
+      "description": "聊天群",
+      "link": "https://www.eeo.cn/s/a/?cid=294679959",
+      "category": 1
+    },
+    {
+      "name": "₍˄·͈༝·͈˄*₎◞ ̑",
+      "id": "292245095",
+      "description": "₍˄·͈༝·͈˄*₎◞ ̑̑",
+      "link": "https://www.eeo.cn/s/a/?cid=292245095",
+      "category": 1
+    },
+    {
+      "name": "2026活人群",
+      "id": "295622951",
+      "description": "聊天群",
+      "link": "https://www.eeo.cn/s/a/?cid=295622951",
+      "category": 2
+    },
+    {
+      "name": "2026",
+      "id": "295768447",
+      "description": "聊天群",
+      "link": "https://www.eeo.cn/s/a/?cid=295768447",
+      "category": 2
+    },
+    {
+      "name": "除夕特别版 洋葱新闻 Onion News",
+      "id": "295769095",
+      "description": "聊天群",
+      "link": "https://www.classin.com/s/a/?cid=295769095",
+      "category": 2
+    },
+    {
+      "name": "😋",
+      "id": "295631125",
+      "description": "聊天群",
+      "link": "https://www.eeo.cn/s/a/?cid=295631125",
+      "category": 2
     }
   ]
 }
