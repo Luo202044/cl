@@ -1,30 +1,17 @@
-[
-  {
-    "name": "雨云",
-    "description": "本站计算服务提供商",
-    "url": "https://www.rainyun.com/luoqing_",
-    "icon": "fa-cloud",
-    "color": "#2196F3"
-  },
-  {
-    "name": "DeepSeek",
-    "description": "AI辅助开发工具",
-    "url": "https://chat.deepseek.com",
-    "icon": "fa-brain",
-    "color": "#9C27B0"
-  },
-  {
-    "name": "待添加",
-    "description": "等待添加更多网站",
-    "url": "#",
-    "icon": "fa-link",
-    "color": "#9E9E9E"
-  },
-  {
-    "name": "待添加",
-    "description": "等待添加更多网站",
-    "url": "#",
-    "icon": "fa-link",
-    "color": "#9E9E9E"
-  }
-]
+{
+  "categories": [
+    { "id": 1, "name": "组别1", "icon": "fa-mobile-alt" },
+    { "id": 2, "name": "组别2", "icon": "fa-laptop-code" },
+    { "id": 3, "name": "组别3", "icon": "fa-gamepad" },
+    { "id": 4, "name": "组别4", "icon": "fa-film" }
+  ],
+  "groups": [
+    {
+      "name": "bilibili",
+      "id": "bilibili"",
+      "description": "1",
+      "link": "https://www.bilibili.com",
+      "category": 1
+    }
+  ]
+}
