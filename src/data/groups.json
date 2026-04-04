@@ -14,12 +14,19 @@
       "category": 1
     },
     {
-      "name": "2000人大群",
-      "id": "301801203",
+      "name": "2000人大群[审核群]",
+      "id": "302170565",
       "description": "2000人大群",
-      "link": "https://www.eeo.cn/s/a/?cid=301801203",
+      "link": "https://www.eeo.cn/s/a/?cid=302170565",
       "category": 1
-      },
+    },
+    {
+      "name": "1000人大群",
+      "id": "302196799",
+      "description": "1000人大群",
+      "link": "https://www.eeo.cn/s/a/?cid=302196799",
+      "category": 1
+    },
     {
       "name": "皇宫",
       "id": "279289745",
