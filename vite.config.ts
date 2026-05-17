@@ -8,10 +8,10 @@ export default defineConfig({
     port: 5173,
     proxy: {
       '/api': {
-        target: 'https://api.xn--bgtt50a8xt.cn',
+        target: 'https://api.xn--bgtt50a8xt.top',
         changeOrigin: true,
         secure: true,
-        rewrite: (path) => path.replace(/^\/api/, '/api')
+        rewrite: (path) => path.replace(/^\/api/, '')
       }
     }
   }
