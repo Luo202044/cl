@@ -11,7 +11,7 @@ export default defineConfig({
         target: 'https://api.xn--bgtt50a8xt.cn',
         changeOrigin: true,
         secure: true,
-        rewrite: (path) => path.replace(/^\/api/, '/api')
+        rewrite: (path) => path.replace(/^\/api/, '')
       }
     }
   }
