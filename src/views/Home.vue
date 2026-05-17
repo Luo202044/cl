@@ -33,7 +33,7 @@ function goToCenter() {
     <section class="hero-section anim-entry">
       <div class="hero-content">
         <h1 class="hero-title">欢迎来到 Cottie</h1>
-        <p class="hero-subtitle">面向ClassIn用户的公共导航平台</p>
+        <p class="hero-subtitle">面向ClassIn用户的公共平台</p>
         <div class="hero-actions">
           <button class="btn btn-primary hero-btn" @click="goToCenter">
             <i class="fas fa-compass"></i>
