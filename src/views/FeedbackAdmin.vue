@@ -25,7 +25,7 @@
         <button @click="logout" class="logout-btn">退出登录</button>
       </div>
 
-      <!-- 筛选栏（复用 Card 作为容器） -->
+      <!-- 筛选栏 -->
       <Card title="筛选与搜索" icon="fa-filter" :hoverable="false" class="filter-card">
         <div class="filter-bar">
           <div class="filter-item">
@@ -57,18 +57,16 @@
         </div>
       </Card>
 
-      <!-- 反馈列表 - 每个反馈项使用 Card 组件 -->
+      <!-- 反馈列表 -->
       <div class="feedback-list">
         <Card 
           v-for="item in filteredFeedbacks" 
           :key="item.id"
           :title="item.title"
-          :icon="getTypeIcon(item.type)"
           hoverable
           class="feedback-card"
         >
           <template #icon>
-            <!-- 自定义图标区域，显示类型标识 -->
             <div class="card-custom-icon" :data-type="item.type">
               {{ getTypeEmoji(item.type) }}
             </div>
@@ -108,10 +106,9 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue';
-import Card from '@/components/Card.vue';
-import AnnouncementCard from '@/components/AnnouncementCard.vue';
+import Card from '../../components/Card.vue';  // ✅ 相对路径
+import AnnouncementCard from '../../components/AnnouncementCard.vue';  // ✅ 相对路径
 
-// API 配置 - 替换为你的 Worker 域名
 const API_BASE = 'https://api.xn--bgtt50a8xt.top';
 
 interface FeedbackItem {
@@ -124,12 +121,10 @@ interface FeedbackItem {
   time: number;
 }
 
-// 认证状态
 const isAuthenticated = ref(false);
 const token = ref('');
 const password = ref('');
 
-// 数据状态
 const allFeedbacks = ref<FeedbackItem[]>([]);
 const filterType = ref<'all' | 'suggestion' | 'bug' | 'other'>('all');
 const pageSize = ref(20);
@@ -148,33 +143,28 @@ const getTypeEmoji = (type?: string) => {
   return map[type || 'other'] || '💬';
 };
 
-const getTypeIcon = (type?: string) => {
-  // 返回图标类名（用于 Card 的 icon prop，但我们会用自定义插槽覆盖，所以这里返回空）
-  return '';
-};
-
 const formatDateTime = (timestamp: number) => {
   const date = new Date(timestamp);
   return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')} ${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}`;
 };
 
-// 过滤后的列表（前端筛选）
+// 前端筛选
 const filteredFeedbacks = computed(() => {
   let result = [...allFeedbacks.value];
   if (filterType.value !== 'all') {
     result = result.filter(item => item.type === filterType.value);
   }
   if (searchKeyword.value.trim()) {
-    const keyword = searchKeyword.value.toLowerCase();
+    const kw = searchKeyword.value.toLowerCase();
     result = result.filter(item => 
-      item.title.toLowerCase().includes(keyword) ||
-      item.main.toLowerCase().includes(keyword)
+      item.title.toLowerCase().includes(kw) ||
+      item.main.toLowerCase().includes(kw)
     );
   }
   return result;
 });
 
-// 加载反馈（API）
+// API 调用
 const loadFeedbacks = async (page: number = 1) => {
   if (!token.value) return;
   try {
@@ -197,7 +187,6 @@ const loadFeedbacks = async (page: number = 1) => {
   }
 };
 
-// 删除反馈
 const deleteFeedback = async (id: number) => {
   if (!confirm('确定删除这条反馈吗？')) return;
   try {
@@ -216,17 +205,14 @@ const deleteFeedback = async (id: number) => {
   }
 };
 
-// 刷新
 const refreshData = () => {
   loadFeedbacks(currentPage.value);
 };
 
-// 搜索（重置到第一页）
 const searchFeedbacks = () => {
   loadFeedbacks(1);
 };
 
-// 登录
 const login = async () => {
   if (!password.value.trim()) {
     alert('请输入 Token');
@@ -239,14 +225,13 @@ const login = async () => {
     sessionStorage.setItem('feedback_admin_token', token.value);
     sessionStorage.setItem('feedback_admin_auth', 'true');
   } else {
-    // 即使列表为空，只要 API 没有报 502 错误，也算登录成功
+    // 即使列表为空，只要 API 没有返回 502 错误，也认为登录成功
     isAuthenticated.value = true;
     sessionStorage.setItem('feedback_admin_token', token.value);
     sessionStorage.setItem('feedback_admin_auth', 'true');
   }
 };
 
-// 退出
 const logout = () => {
   isAuthenticated.value = false;
   token.value = '';
@@ -255,7 +240,6 @@ const logout = () => {
   sessionStorage.removeItem('feedback_admin_auth');
 };
 
-// 检查已登录状态
 onMounted(() => {
   const savedAuth = sessionStorage.getItem('feedback_admin_auth');
   const savedToken = sessionStorage.getItem('feedback_admin_token');
@@ -268,25 +252,21 @@ onMounted(() => {
 </script>
 
 <style scoped>
-/* 只保留页面布局和微调样式，所有卡片样式由 Card 组件提供 */
+/* 样式与之前相同（可复用之前的完整样式） */
 .admin-page {
   min-height: 100vh;
   background: var(--bg-primary, #f5f7fb);
   padding: 2rem 1.5rem;
 }
-
-/* 登录卡片容器 */
 .login-container {
   max-width: 450px;
   margin: 80px auto;
 }
-
 .login-form {
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
 }
-
 .form-group input {
   width: 100%;
   padding: 0.8rem 1rem;
@@ -296,7 +276,6 @@ onMounted(() => {
   font-size: 1rem;
   color: var(--text-primary);
 }
-
 .submit-btn {
   background: var(--gradient-primary);
   color: white;
@@ -307,20 +286,16 @@ onMounted(() => {
   cursor: pointer;
   transition: 0.2s;
 }
-
 .submit-btn:hover {
   transform: translateY(-2px);
   filter: brightness(1.02);
 }
-
 .hint {
   text-align: center;
   font-size: 0.8rem;
   color: var(--text-secondary);
   margin-top: 0.5rem;
 }
-
-/* 管理界面头部 */
 .admin-header {
   display: flex;
   justify-content: space-between;
@@ -329,7 +304,6 @@ onMounted(() => {
   padding-bottom: 1rem;
   border-bottom: 2px solid var(--border-color);
 }
-
 .admin-header h1 {
   font-size: 1.8rem;
   background: var(--gradient-primary);
@@ -337,7 +311,6 @@ onMounted(() => {
   background-clip: text;
   color: transparent;
 }
-
 .logout-btn {
   background: #ef4444;
   color: white;
@@ -347,27 +320,22 @@ onMounted(() => {
   cursor: pointer;
   font-weight: 500;
 }
-
-/* 筛选卡片内布局 */
 .filter-bar {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
   align-items: flex-end;
 }
-
 .filter-item {
   display: flex;
   flex-direction: column;
   gap: 0.3rem;
 }
-
 .filter-item label {
   font-size: 0.8rem;
   font-weight: 600;
   color: var(--text-secondary);
 }
-
 .filter-item select,
 .filter-item input {
   padding: 0.5rem 0.8rem;
@@ -376,11 +344,9 @@ onMounted(() => {
   background: var(--input-bg);
   color: var(--text-primary);
 }
-
 .search-item input {
   width: 200px;
 }
-
 .action-btn {
   padding: 0.5rem 1.2rem;
   border-radius: 30px;
@@ -390,24 +356,18 @@ onMounted(() => {
   cursor: pointer;
   font-weight: 500;
 }
-
 .refresh-btn {
   background: #10b981;
 }
-
 .refresh-btn:hover {
   background: #059669;
 }
-
-/* 反馈列表 */
 .feedback-list {
   margin: 2rem 0;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
-
-/* 自定义卡片内的图标样式（覆盖 Card 默认的图标区域） */
 .card-custom-icon {
   width: 48px;
   height: 48px;
@@ -419,7 +379,6 @@ onMounted(() => {
   border-radius: 16px;
   color: white;
 }
-
 .card-custom-icon[data-type="suggestion"] {
   background: linear-gradient(135deg, #3b82f6, #2563eb);
 }
@@ -429,8 +388,6 @@ onMounted(() => {
 .card-custom-icon[data-type="other"] {
   background: linear-gradient(135deg, #8b5cf6, #7c3aed);
 }
-
-/* 反馈元信息 */
 .feedback-meta {
   display: flex;
   justify-content: space-between;
@@ -438,13 +395,11 @@ onMounted(() => {
   font-size: 0.85rem;
   color: var(--text-secondary);
 }
-
 .feedback-main {
   margin: 0.8rem 0;
   line-height: 1.5;
   color: var(--text-primary);
 }
-
 .feedback-footer {
   display: flex;
   justify-content: space-between;
@@ -453,13 +408,11 @@ onMounted(() => {
   padding-top: 0.8rem;
   border-top: 1px solid var(--border-color);
 }
-
 .user-agent {
   font-size: 0.7rem;
   color: var(--text-secondary);
   word-break: break-all;
 }
-
 .delete-btn {
   background: #ef4444;
   color: white;
@@ -470,18 +423,13 @@ onMounted(() => {
   font-size: 0.8rem;
   transition: 0.2s;
 }
-
 .delete-btn:hover {
   background: #dc2626;
   transform: translateY(-1px);
 }
-
-/* 空状态使用 AnnouncementCard，样式自动适配 */
 .empty-state {
   margin: 3rem 0;
 }
-
-/* 分页 */
 .pagination {
   display: flex;
   justify-content: center;
@@ -489,7 +437,6 @@ onMounted(() => {
   gap: 1rem;
   margin-top: 2rem;
 }
-
 .page-btn {
   background: var(--card-bg);
   border: 1px solid var(--border-color);
@@ -499,24 +446,19 @@ onMounted(() => {
   color: var(--text-primary);
   transition: 0.2s;
 }
-
 .page-btn:hover:not(:disabled) {
   background: var(--gradient-primary);
   color: white;
   border-color: transparent;
 }
-
 .page-btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
-
 .page-info {
   font-size: 0.9rem;
   color: var(--text-secondary);
 }
-
-/* 响应式 */
 @media (max-width: 640px) {
   .admin-page {
     padding: 1rem;
