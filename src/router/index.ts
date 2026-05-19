@@ -37,6 +37,18 @@ const routes: RouteRecordRaw[] = [
     name: 'Terms',
     component: () => import('../views/Terms.vue'),
     meta: { title: '服务协议' }
+  },
+    {
+    path: '/feedback',
+    name: 'Feedback',
+    component: () => import('../views/Feedback.vue'),
+    meta: { title: '意见反馈' }
+  },
+  {
+    path: '/admin/feedback',
+    name: 'FeedbackAdmin',
+    component: () => import('../views/Admin/FeedbackAdmin.vue'),
+    meta: { title: '反馈管理后台' }
   }
 ]
 
