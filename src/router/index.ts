@@ -47,7 +47,7 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/admin/feedback',
     name: 'FeedbackAdmin',
-    component: () => import('../views/Admin/FeedbackAdmin.vue'),
+    component: () => import('../views/FeedbackAdmin.vue'),
     meta: { title: '反馈管理后台' }
   }
 ]
