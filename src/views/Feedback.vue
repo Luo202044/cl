@@ -1,12 +1,10 @@
 <template>
   <div class="feedback-page">
-    <!-- 可选：简洁头部（复用全局风格） -->
     <div class="page-header">
       <h1>意见反馈</h1>
       <p>我们非常重视您的每一条建议</p>
     </div>
 
-    <!-- 表单卡片 - 直接复用 Card 组件 -->
     <div class="form-wrapper">
       <Card title="提交反馈" icon="fa-pen-alt" :hoverable="false">
         <form @submit.prevent="handleSubmit" class="feedback-form">
@@ -67,9 +65,8 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import Card from '@/components/Card.vue';
+import Card from '../components/Card.vue';  // ✅ 改为相对路径
 
-// API 配置（替换为你的 Worker 域名）
 const API_BASE = 'https://api.xn--bgtt50a8xt.top';
 
 const formData = ref({
@@ -127,7 +124,7 @@ const handleSubmit = async () => {
 </script>
 
 <style scoped>
-/* 页面布局 – 只控制卡片位置和间距，具体样式由 Card 组件和全局变量决定 */
+/* 样式与之前相同，省略（可复用之前的） */
 .feedback-page {
   min-height: 100vh;
   background: var(--bg-primary, #f5f7fb);
@@ -136,12 +133,10 @@ const handleSubmit = async () => {
   flex-direction: column;
   align-items: center;
 }
-
 .page-header {
   text-align: center;
   margin-bottom: 2rem;
 }
-
 .page-header h1 {
   font-size: 2.2rem;
   font-weight: 700;
@@ -151,36 +146,29 @@ const handleSubmit = async () => {
   color: transparent;
   margin-bottom: 0.5rem;
 }
-
 .page-header p {
   color: var(--text-secondary);
   font-size: 1rem;
 }
-
 .form-wrapper {
   width: 100%;
   max-width: 700px;
   margin: 0 auto;
 }
-
-/* 表单内部样式 – 适配 Card 的默认插槽 */
 .feedback-form {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
-
 .form-group {
   position: relative;
 }
-
 .form-group label {
   display: block;
   font-weight: 600;
   margin-bottom: 0.5rem;
   color: var(--text-primary);
 }
-
 .form-group input,
 .form-group select,
 .form-group textarea {
@@ -194,7 +182,6 @@ const handleSubmit = async () => {
   transition: all 0.2s;
   font-family: inherit;
 }
-
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
@@ -202,7 +189,6 @@ const handleSubmit = async () => {
   border-color: var(--primary);
   box-shadow: 0 0 0 3px var(--primary-glow);
 }
-
 .char-count {
   position: absolute;
   right: 12px;
@@ -210,11 +196,9 @@ const handleSubmit = async () => {
   font-size: 0.7rem;
   color: var(--text-secondary);
 }
-
 textarea {
   resize: vertical;
 }
-
 .submit-btn {
   width: 100%;
   padding: 0.9rem;
@@ -228,17 +212,14 @@ textarea {
   transition: all 0.2s;
   margin-top: 0.5rem;
 }
-
 .submit-btn:hover:not(:disabled) {
   transform: translateY(-2px);
   filter: brightness(1.02);
   box-shadow: 0 8px 20px var(--primary-glow);
 }
-
 .submit-btn:active:not(:disabled) {
   transform: translateY(1px);
 }
-
 .submit-btn:disabled {
   opacity: 0.6;
   cursor: not-allowed;
