@@ -11,7 +11,9 @@ const navLinks = [
   { path: '/', name: '首页', icon: 'fa-home' },
   { path: '/about', name: '关于', icon: 'fa-info-circle' },
   { path: '/center', name: '资源中心', icon: 'fa-compass' },
-  { path: '/terms', name: '服务协议', icon: 'fa-file-contract' }
+  { path: '/terms', name: '服务协议', icon: 'fa-file-contract' },
+  { path: '/feedback', name: '意见反馈', icon: 'fa-file-contract'},
+  { path: '/admin/feedback', name: '反馈后台', icon: 'fa-file-contract'},
 ]
 
 const isActive = (path: string) => {
