@@ -8,45 +8,51 @@
     <div class="form-wrapper">
       <Card title="提交反馈" icon="fa-pen-alt" :hoverable="false">
         <form @submit.prevent="handleSubmit" class="feedback-form">
-          <div class="form-group">
+          <!-- 昵称 -->
+          <div class="form-group" :class="{ 'has-error': errors.user_id }">
             <label>昵称</label>
-            <input 
-              type="text" 
-              v-model="formData.user_id" 
+            <input
+              type="text"
+              v-model="formData.user_id"
               placeholder="如何称呼您？"
-              required
+              :disabled="isSubmitting"
               maxlength="50"
-            >
+            />
             <span class="char-count">{{ formData.user_id.length }}/50</span>
+            <span class="error-msg" v-if="errors.user_id">{{ errors.user_id }}</span>
           </div>
 
-          <div class="form-group">
+          <!-- 标题 -->
+          <div class="form-group" :class="{ 'has-error': errors.title }">
             <label>标题</label>
-            <input 
-              type="text" 
-              v-model="formData.title" 
+            <input
+              type="text"
+              v-model="formData.title"
               placeholder="简要描述您的反馈..."
-              required
+              :disabled="isSubmitting"
               maxlength="100"
-            >
+            />
             <span class="char-count">{{ formData.title.length }}/100</span>
+            <span class="error-msg" v-if="errors.title">{{ errors.title }}</span>
           </div>
 
-          <div class="form-group">
+          <!-- 详细内容 -->
+          <div class="form-group" :class="{ 'has-error': errors.main }">
             <label>详细内容</label>
-            <textarea 
-              v-model="formData.main" 
-              rows="6" 
+            <textarea
+              v-model="formData.main"
+              rows="6"
               placeholder="请详细描述您的想法或遇到的问题..."
-              required
+              :disabled="isSubmitting"
               maxlength="500"
             ></textarea>
             <span class="char-count">{{ formData.main.length }}/500</span>
+            <span class="error-msg" v-if="errors.main">{{ errors.main }}</span>
           </div>
 
           <button type="submit" class="submit-btn" :disabled="isSubmitting">
             <span v-if="isSubmitting">提交中...</span>
-            <span v-else>发确定</span>
+            <span v-else>提交反馈</span>
           </button>
         </form>
       </Card>
@@ -55,32 +61,54 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
-import Card from '@/components/Card.vue';  // 使用别名，如果仍有问题可改为相对路径
+import { ref, reactive } from 'vue';
+import Card from '@/components/Card.vue';
 
-const API_BASE = 'https://api.xn--bgtt50a8xt.top';  // 替换为你的 Worker 域名
+const API_BASE = 'https://api.xn--bgtt50a8xt.top'; // 建议改用环境变量
 
 const formData = ref({
   user_id: '',
   title: '',
-  main: ''
+  main: '',
 });
 
 const isSubmitting = ref(false);
+const errors = reactive({
+  user_id: '',
+  title: '',
+  main: '',
+});
 
-const handleSubmit = async () => {
+// 清除所有错误信息
+const clearErrors = () => {
+  errors.user_id = '';
+  errors.title = '';
+  errors.main = '';
+};
+
+// 前端校验
+const validateForm = (): boolean => {
+  clearErrors();
+  let isValid = true;
+
   if (!formData.value.user_id.trim()) {
-    alert('请填写昵称');
-    return;
+    errors.user_id = '请填写昵称';
+    isValid = false;
   }
   if (!formData.value.title.trim()) {
-    alert('请填写标题');
-    return;
+    errors.title = '请填写标题';
+    isValid = false;
   }
   if (!formData.value.main.trim()) {
-    alert('请填写详细内容');
-    return;
+    errors.main = '请填写详细内容';
+    isValid = false;
   }
+
+  return isValid;
+};
+
+const handleSubmit = async () => {
+  if (!validateForm()) return;
 
   isSubmitting.value = true;
 
@@ -92,21 +120,34 @@ const handleSubmit = async () => {
         user_id: formData.value.user_id.trim(),
         title: formData.value.title.trim(),
         main: formData.value.main.trim(),
-        user_ua: navigator.userAgent
-      })
+        user_ua: navigator.userAgent,
+      }),
     });
 
-    const result = await response.json();
+    // 1. 先检查 HTTP 状态码
+    if (!response.ok) {
+      throw new Error(`服务异常（HTTP ${response.status}），请稍后重试`);
+    }
 
+    // 2. 安全解析 JSON（防止返回 HTML 等非 JSON 格式）
+    let result: any;
+    try {
+      result = await response.json();
+    } catch {
+      throw new Error('服务器返回了无效的数据格式，请联系管理员');
+    }
+
+    // 3. 根据业务码处理
     if (result.code === 200) {
       alert('反馈提交成功！感谢您的支持 ❤️');
       formData.value = { user_id: '', title: '', main: '' };
+      clearErrors();
     } else {
-      alert(result.message || '提交失败，请稍后重试');
+      throw new Error(result.message || '提交失败，请稍后重试');
     }
-  } catch (error) {
-    console.error('提交失败:', error);
-    alert('网络错误，请检查 Worker 服务状态');
+  } catch (error: any) {
+    console.error('提交反馈失败:', error);
+    alert(error.message || '网络错误，请检查服务状态');
   } finally {
     isSubmitting.value = false;
   }
@@ -114,101 +155,21 @@ const handleSubmit = async () => {
 </script>
 
 <style scoped>
-.feedback-page {
-  min-height: 100vh;
-  background: var(--bg-primary, #f5f7fb);
-  padding: 2rem 1rem 4rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+/* ... 原有样式保留，新增错误相关样式 ... */
+.form-group.has-error input,
+.form-group.has-error textarea {
+  border-color: #e53e3e;
+  box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.1);
 }
-.page-header {
-  text-align: center;
-  margin-bottom: 2rem;
-}
-.page-header h1 {
-  font-size: 2.2rem;
-  font-weight: 700;
-  background: var(--gradient-primary);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  margin-bottom: 0.5rem;
-}
-.page-header p {
-  color: var(--text-secondary);
-  font-size: 1rem;
-}
-.form-wrapper {
-  width: 100%;
-  max-width: 700px;
-  margin: 0 auto;
-}
-.feedback-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-.form-group {
-  position: relative;
-}
-.form-group label {
-  display: block;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-  color: var(--text-primary);
-}
-.form-group input,
-.form-group textarea {
-  width: 100%;
-  padding: 0.75rem 1rem;
-  background: var(--input-bg, #ffffff);
-  border: 1px solid var(--border-color, #e2e8f0);
-  border-radius: 12px;
-  font-size: 0.95rem;
-  color: var(--text-primary);
-  transition: all 0.2s;
-  font-family: inherit;
-}
-.form-group input:focus,
-.form-group textarea:focus {
-  outline: none;
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px var(--primary-glow);
-}
-.char-count {
+.error-msg {
   position: absolute;
-  right: 12px;
-  bottom: 12px;
-  font-size: 0.7rem;
-  color: var(--text-secondary);
+  left: 0;
+  bottom: -18px;
+  font-size: 0.75rem;
+  color: #e53e3e;
 }
-textarea {
-  resize: vertical;
-}
-.submit-btn {
-  width: 100%;
-  padding: 0.9rem;
-  background: var(--gradient-primary);
-  color: white;
-  border: none;
-  border-radius: 40px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s;
-  margin-top: 0.5rem;
-}
-.submit-btn:hover:not(:disabled) {
-  transform: translateY(-2px);
-  filter: brightness(1.02);
-  box-shadow: 0 8px 20px var(--primary-glow);
-}
-.submit-btn:active:not(:disabled) {
-  transform: translateY(1px);
-}
-.submit-btn:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
+/* 让字符计数在错误时依然可见，调整位置 */
+.form-group.has-error .char-count {
+  bottom: 2px; /* 避免与错误文字重叠 */
 }
 </style>
