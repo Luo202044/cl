@@ -62,7 +62,7 @@
 
 <script setup lang="ts">
 import { ref, reactive } from 'vue';
-import Card from '@/components/Card.vue';
+import Card from /../components/Card.vue';
 
 const API_BASE = 'https://api.xn--bgtt50a8xt.top'; // 建议改用环境变量
 
