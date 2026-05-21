@@ -445,6 +445,7 @@ onMounted(() => {
   margin: 0.8rem 0;
   line-height: 1.5;
   color: var(--text-primary);
+  white-space: pre-line;
 }
 .feedback-footer {
   display: flex;
@@ -518,3 +519,4 @@ onMounted(() => {
   }
 }
 </style>
+
