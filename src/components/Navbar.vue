@@ -89,6 +89,16 @@ const showMobileMenu = ref(false)
           <i :class="['fas', link.icon]"></i>
           <span>{{ link.name }}</span>
         </router-link>
+        <!-- 移动端主题切换按钮 -->
+        <button
+          class="mobile-nav-link theme-toggle-mobile"
+          @click="toggleTheme"
+          :title="isDark ? '切换到亮色模式' : '切换到暗色模式'"
+          style="width: 100%; margin-top: 1em;"
+        >
+          <i :class="['fas', isDark ? 'fa-sun' : 'fa-moon']"></i>
+          <span>{{ isDark ? '切换到亮色' : '切换到暗色' }}</span>
+        </button>
       </nav>
     </Transition>
   </header>
@@ -229,6 +239,26 @@ const showMobileMenu = ref(false)
   transform: rotate(15deg);
 }
 
+.theme-toggle-mobile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-radius: var(--border-radius-sm);
+  background: var(--primary-light);
+  color: var(--primary);
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all var(--transition-fast);
+  padding: 12px 0;
+  border: none;
+}
+
+.theme-toggle-mobile:hover {
+  background: var(--primary);
+  color: white;
+}
+
 .mobile-menu-btn {
   display: none;
   width: 44px;
@@ -309,3 +339,4 @@ const showMobileMenu = ref(false)
   }
 }
 </style>
+
