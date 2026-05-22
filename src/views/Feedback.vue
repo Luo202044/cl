@@ -49,7 +49,7 @@
 
           <button type="submit" class="submit-btn" :disabled="isSubmitting">
             <span v-if="isSubmitting">提交中...</span>
-            <span v-else>发确定</span>
+            <span v-else>发送</span>
           </button>
         </form>
       </Card>
@@ -128,18 +128,43 @@ const handleSubmit = async () => {
 </script>
 
 <style scoped>
+:root {
+  --bg-primary: #f5f7fb;
+  --text-primary: #1a202c;
+  --text-secondary: #718096;
+  --border-color: #e2e8f0;
+  --input-bg: #ffffff;
+  --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --primary: #667eea;
+  --primary-glow: rgba(102, 126, 234, 0.1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-primary: #1a202c;
+    --text-primary: #f7fafc;
+    --text-secondary: #a0aec0;
+    --border-color: #2d3748;
+    --input-bg: #2d3748;
+    --primary-glow: rgba(102, 126, 234, 0.2);
+  }
+}
+
 .feedback-page {
   min-height: 100vh;
-  background: var(--bg-primary, #f5f7fb);
+  background: var(--bg-primary);
   padding: 2rem 1rem 4rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+  transition: background-color 0.3s ease;
 }
+
 .page-header {
   text-align: center;
   margin-bottom: 2rem;
 }
+
 .page-header h1 {
   font-size: 2.2rem;
   font-weight: 700;
@@ -149,47 +174,68 @@ const handleSubmit = async () => {
   color: transparent;
   margin-bottom: 0.5rem;
 }
+
 .page-header p {
   color: var(--text-secondary);
   font-size: 1rem;
 }
+
 .form-wrapper {
   width: 100%;
   max-width: 700px;
   margin: 0 auto;
 }
+
 .feedback-form {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
+
 .form-group {
   position: relative;
 }
+
 .form-group label {
   display: block;
   font-weight: 600;
   margin-bottom: 0.5rem;
   color: var(--text-primary);
 }
+
 .form-group input,
 .form-group textarea {
   width: 100%;
   padding: 0.75rem 1rem;
-  background: var(--input-bg, #ffffff);
-  border: 1px solid var(--border-color, #e2e8f0);
+  background: var(--input-bg);
+  border: 1px solid var(--border-color);
   border-radius: 12px;
   font-size: 0.95rem;
   color: var(--text-primary);
   transition: all 0.2s;
   font-family: inherit;
 }
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: var(--text-secondary);
+  opacity: 0.7;
+}
+
 .form-group input:focus,
 .form-group textarea:focus {
   outline: none;
   border-color: var(--primary);
   box-shadow: 0 0 0 3px var(--primary-glow);
+  background: var(--input-bg);
 }
+
+.form-group input:disabled,
+.form-group textarea:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
 .char-count {
   position: absolute;
   right: 12px;
@@ -197,9 +243,11 @@ const handleSubmit = async () => {
   font-size: 0.7rem;
   color: var(--text-secondary);
 }
+
 textarea {
   resize: vertical;
 }
+
 .submit-btn {
   width: 100%;
   padding: 0.9rem;
@@ -213,14 +261,17 @@ textarea {
   transition: all 0.2s;
   margin-top: 0.5rem;
 }
+
 .submit-btn:hover:not(:disabled) {
   transform: translateY(-2px);
   filter: brightness(1.02);
   box-shadow: 0 8px 20px var(--primary-glow);
 }
+
 .submit-btn:active:not(:disabled) {
   transform: translateY(1px);
 }
+
 .submit-btn:disabled {
   opacity: 0.6;
   cursor: not-allowed;
