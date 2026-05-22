@@ -295,29 +295,75 @@ onMounted(() => {
 </script>
 
 <style scoped>
+:root {
+  --bg-primary: #f5f7fb;
+  --card-bg: #ffffff;
+  --text-primary: #1a202c;
+  --text-secondary: #718096;
+  --border-color: #e2e8f0;
+  --input-bg: #ffffff;
+  --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --primary: #667eea;
+  --primary-glow: rgba(102, 126, 234, 0.1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-primary: #1a202c;
+    --card-bg: #2d3748;
+    --text-primary: #f7fafc;
+    --text-secondary: #a0aec0;
+    --border-color: #4a5568;
+    --input-bg: #1a202c;
+    --primary-glow: rgba(102, 126, 234, 0.2);
+  }
+}
+
 .admin-page {
   min-height: 100vh;
-  background: var(--bg-primary, #f5f7fb);
+  background: var(--bg-primary);
   padding: 2rem 1.5rem;
+  transition: background-color 0.3s ease;
 }
+
 .login-container {
   max-width: 450px;
   margin: 80px auto;
 }
+
 .login-form {
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
 }
+
 .form-group input {
   width: 100%;
   padding: 0.8rem 1rem;
-  background: var(--input-bg, white);
-  border: 1px solid var(--border-color, #e2e8f0);
+  background: var(--input-bg);
+  border: 1px solid var(--border-color);
   border-radius: 12px;
   font-size: 1rem;
   color: var(--text-primary);
+  transition: all 0.2s;
 }
+
+.form-group input::placeholder {
+  color: var(--text-secondary);
+  opacity: 0.7;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-glow);
+}
+
+.form-group input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
 .submit-btn {
   background: var(--gradient-primary);
   color: white;
@@ -328,20 +374,24 @@ onMounted(() => {
   cursor: pointer;
   transition: 0.2s;
 }
+
 .submit-btn:hover:not(:disabled) {
   transform: translateY(-2px);
   filter: brightness(1.02);
 }
+
 .submit-btn:disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }
+
 .hint {
   text-align: center;
   font-size: 0.8rem;
   color: var(--text-secondary);
   margin-top: 0.5rem;
 }
+
 .admin-header {
   display: flex;
   justify-content: space-between;
@@ -350,6 +400,7 @@ onMounted(() => {
   padding-bottom: 1rem;
   border-bottom: 2px solid var(--border-color);
 }
+
 .admin-header h1 {
   font-size: 1.8rem;
   background: var(--gradient-primary);
@@ -357,6 +408,7 @@ onMounted(() => {
   background-clip: text;
   color: transparent;
 }
+
 .logout-btn {
   background: #ef4444;
   color: white;
@@ -365,23 +417,32 @@ onMounted(() => {
   border-radius: 30px;
   cursor: pointer;
   font-weight: 500;
+  transition: 0.2s;
 }
+
+.logout-btn:hover {
+  background: #dc2626;
+}
+
 .filter-bar {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
   align-items: flex-end;
 }
+
 .filter-item {
   display: flex;
   flex-direction: column;
   gap: 0.3rem;
 }
+
 .filter-item label {
   font-size: 0.8rem;
   font-weight: 600;
   color: var(--text-secondary);
 }
+
 .filter-item select,
 .filter-item input {
   padding: 0.5rem 0.8rem;
@@ -389,10 +450,26 @@ onMounted(() => {
   border: 1px solid var(--border-color);
   background: var(--input-bg);
   color: var(--text-primary);
+  transition: all 0.2s;
 }
+
+.filter-item select::placeholder,
+.filter-item input::placeholder {
+  color: var(--text-secondary);
+  opacity: 0.7;
+}
+
+.filter-item select:focus,
+.filter-item input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-glow);
+}
+
 .search-item input {
   width: 200px;
 }
+
 .action-btn {
   padding: 0.5rem 1.2rem;
   border-radius: 30px;
@@ -401,19 +478,25 @@ onMounted(() => {
   color: white;
   cursor: pointer;
   font-weight: 500;
+  transition: 0.2s;
 }
+
 .refresh-btn {
   background: #10b981;
 }
+
 .refresh-btn:hover {
   background: #059669;
+  transform: translateY(-2px);
 }
+
 .feedback-list {
   margin: 2rem 0;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
+
 .card-custom-icon {
   width: 48px;
   height: 48px;
@@ -425,15 +508,19 @@ onMounted(() => {
   border-radius: 16px;
   color: white;
 }
+
 .card-custom-icon[data-type="suggestion"] {
   background: linear-gradient(135deg, #3b82f6, #2563eb);
 }
+
 .card-custom-icon[data-type="bug"] {
   background: linear-gradient(135deg, #ef4444, #dc2626);
 }
+
 .card-custom-icon[data-type="other"] {
   background: linear-gradient(135deg, #8b5cf6, #7c3aed);
 }
+
 .feedback-meta {
   display: flex;
   justify-content: space-between;
@@ -441,12 +528,14 @@ onMounted(() => {
   font-size: 0.85rem;
   color: var(--text-secondary);
 }
+
 .feedback-main {
   margin: 0.8rem 0;
   line-height: 1.5;
   color: var(--text-primary);
   white-space: pre-line;
 }
+
 .feedback-footer {
   display: flex;
   justify-content: space-between;
@@ -455,11 +544,13 @@ onMounted(() => {
   padding-top: 0.8rem;
   border-top: 1px solid var(--border-color);
 }
+
 .user-agent {
   font-size: 0.7rem;
   color: var(--text-secondary);
   word-break: break-all;
 }
+
 .delete-btn {
   background: #ef4444;
   color: white;
@@ -470,13 +561,16 @@ onMounted(() => {
   font-size: 0.8rem;
   transition: 0.2s;
 }
+
 .delete-btn:hover {
   background: #dc2626;
   transform: translateY(-1px);
 }
+
 .empty-state {
   margin: 3rem 0;
 }
+
 .pagination {
   display: flex;
   justify-content: center;
@@ -484,6 +578,7 @@ onMounted(() => {
   gap: 1rem;
   margin-top: 2rem;
 }
+
 .page-btn {
   background: var(--card-bg);
   border: 1px solid var(--border-color);
@@ -493,30 +588,35 @@ onMounted(() => {
   color: var(--text-primary);
   transition: 0.2s;
 }
+
 .page-btn:hover:not(:disabled) {
   background: var(--gradient-primary);
   color: white;
   border-color: transparent;
 }
+
 .page-btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
+
 .page-info {
   font-size: 0.9rem;
   color: var(--text-secondary);
 }
+
 @media (max-width: 640px) {
   .admin-page {
     padding: 1rem;
   }
+
   .filter-bar {
     flex-direction: column;
     align-items: stretch;
   }
+
   .search-item input {
     width: 100%;
   }
 }
 </style>
-
