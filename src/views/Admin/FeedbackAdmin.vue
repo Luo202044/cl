@@ -257,7 +257,7 @@ const login = async () => {
     if (result.code === 200 && result.data !== undefined) {
       token.value = testToken;
       isAuthenticated.value = true;
-      sessionStorage.setItem('feedback_admin_token', token.value);
+      // 不在浏览器存储中持久化敏感 Token，仅保留会话内存态
       sessionStorage.setItem('feedback_admin_auth', 'true');
       await loadFeedbacks(1);
     } else {
