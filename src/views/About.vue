@@ -12,7 +12,7 @@ const developers: Developer[] = [
     name: '洛鸢',
     role: '站长',
     avatar: '/images/user1.jpg',
-    description: 'Cottie网站创始人，负责网站运营和维护'
+    description: 'Cottie网站所有人，负责网站运营和维护'
   },
   {
     name: 'DeepSeek',
