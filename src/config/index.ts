@@ -1,6 +1,6 @@
 export const config = {
   api: {
-    baseUrl: import.meta.env.VITE_API_BASE_URL || 'https://api.xn--bgtt50a8xt.cn/',
+    baseUrl: import.meta.env.VITE_API_BASE_URL || 'https://api.xn--bgtt50a8xt.top/',
     getApiUrl() {
       return `${this.baseUrl}/api`
     },
