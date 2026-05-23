@@ -12,7 +12,7 @@ export const config = {
     }
   },
   contact: {
-    email: import.meta.env.VITE_CONTACT_EMAIL || 'luoqing5203789@outlook.com'
+    email: import.meta.env.VITE_CONTACT_EMAIL || 'luoqing@xn--bgtt50a8xt.top'
   },
   links: {
     rainyun: import.meta.env.VITE_RAINYUN_URL || 'https://www.rainyun.com/luoqing_',
