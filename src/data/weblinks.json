@@ -10,7 +10,28 @@
       "name": "哔哩哔哩",
       "id": "1",
       "description": "bilibili",
-      "link": "https://www.bilibili.com",
+      "link": "https://yuanbao.tencent.com",
+      "category": 1
+    },
+    {
+      "name": "快手",
+      "id": "1",
+      "description": "快手",
+      "link": "https://www.kuaishou.com",
+      "category": 1
+    },
+    {
+      "name": "百度",
+      "id": "1",
+      "description": "www.baidu.com",
+      "link": "www.baidu.com",
+      "category": 1
+    },
+    {
+      "name": "腾讯元宝",
+      "id": "1",
+      "description": "i",
+      "link": "https://yuanbao.tencent.com/",
       "category": 1
     },
     {
