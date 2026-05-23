@@ -83,8 +83,8 @@ const developers: Developer[] = [
           </div>
           <div class="stat-item">
             <i class="fas fa-code-branch"></i>
-            <span>Vue3</span>
-            <small>技术栈</small>
+            <span>v3.2.1</span>
+            <small>当前部署版本</small>
           </div>
           <div class="stat-item">
             <i class="fas fa-heart"></i>
