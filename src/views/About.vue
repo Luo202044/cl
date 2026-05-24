@@ -72,7 +72,7 @@ const developers: Developer[] = [
       
       <div class="info-card anim-entry anim-8">
         <h3>关于 Cottie</h3>
-        <p>Cottie是一个面向ClassIn用户的公共导航平台，主要提供ClassIn群聊链接的分类导航服务。</p>
+        <p>Cottie是一个面向ClassIn用户的公共平台，主要提供ClassIn群聊链接的分类导航服务。</p>
         <p>同时集成了音乐播放器、网页跳转等功能，为用户提供便捷的访问体验。</p>
         
         <div class="info-stats">
@@ -83,7 +83,7 @@ const developers: Developer[] = [
           </div>
           <div class="stat-item">
             <i class="fas fa-code-branch"></i>
-            <span>v3.2.1</span>
+            <span>v3.2.1.2</span>
             <small>当前部署版本</small>
           </div>
           <div class="stat-item">
