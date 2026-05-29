@@ -1,7 +1,20 @@
-
 button:focus,
-button:focus-visible {
-  outline: none;
+button:focus-visible,
+.btn:focus,
+.btn:focus-visible,
+input[type="button"]:focus,
+input[type="submit"]:focus,
+input[type="reset"]:focus,
+[tabindex]:focus {
+  outline: none !important;
   box-shadow: 0 0 0 2px var(--primary, #FF66B2);
   transition: box-shadow 0.2s;
+}
+
+a.btn:focus,
+a.btn:focus-visible,
+.router-link:focus,
+.router-link:focus-visible {
+  outline: none !important;
+  box-shadow: 0 0 0 2px var(--primary, #FF66B2);
 }
