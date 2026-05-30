@@ -3,7 +3,7 @@
     { "id": 1, "name": "组别1", "icon": "fa-mobile-alt" },
     { "id": 2, "name": "组别2", "icon": "fa-laptop-code" },
     { "id": 3, "name": "组别3", "icon": "fa-gamepad" },
-    { "id": 4, "name": "组别4", "icon": "fa-film" }
+    { "id": 4, "name": "通缉", "icon": "fa-film" }
   ],
   "groups": [
     {
@@ -60,14 +60,21 @@
       "id": "295622951",
       "description": "聊天群",
       "link": "https://www.eeo.cn/s/a/?cid=295622951",
-      "category": 2
+      "category": 4
     },
     {
-      "name": "2026",
-      "id": "295768447",
+      "name": "静心学习1",
+      "id": "304184809",
       "description": "聊天群",
-      "link": "https://www.eeo.cn/s/a/?cid=295768447",
-      "category": 2
+      "link": "https://www.eeo.cn/s/a/?cid=304184809",
+      "category": 4
+    },
+    {
+      "name": "静心学习2",
+      "id": "305334361",
+      "description": "聊天群",
+      "link": "https://www.eeo.cn/s/a/?cid=305334361",
+      "category": 4
     },
     {
       "name": "😋",
