@@ -33,7 +33,7 @@
         
         <section class="terms-section">
           <h2>四、隐私保护</h2>
-          <p>本服务尊重并保护用户个人隐私，访问本服务所产生的隐私数据（包含ip地址、cookie、客户端数据等），隐私数据及访问日志在cloudflare公司留存。在未获得用户事先许可的情况下，本服务不会向第三方公开或传播用户的个人信息。但以下情况除外：</p>
+          <p>本服务及棉尾舟配套服务尊重并保护用户个人隐私，访问本服务及棉尾舟配套服务所产生的隐私数据（包含ip地址、cookie、客户端数据等），隐私数据及访问日志在cloudflare公司留存。在未获得用户事先许可的情况下，本服务不会向第三方公开或传播用户的个人信息。但以下情况除外：</p>
           <ul>
             <li>违反服务协议所封禁的ip地址公开；</li>
           </ul>
@@ -66,7 +66,7 @@
         
         <div class="terms-footer">
           <p><strong>服务提供商：</strong>Cottie</p>
-          <p><strong>生效日期：</strong>2025-2026年2月14日</p>
+          <p><strong>生效日期：</strong>2025-2026年8月14日</p>
           <router-link to="/" class="back-home">
             <i class="fas fa-arrow-left"></i> 返回首页
           </router-link>
