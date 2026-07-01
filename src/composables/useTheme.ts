@@ -18,7 +18,7 @@ function loadConfig(): ThemeConfig {
       }
     }
   } catch { /* invalid json, fall through */ }
-  return { color: 'indigo', mode: detectSystemMode() }
+  return { color: 'pink', mode: detectSystemMode() }
 }
 
 function detectSystemMode(): ThemeMode {
@@ -29,7 +29,7 @@ function detectSystemMode(): ThemeMode {
 }
 
 function isValidColor(v: unknown): v is ThemeColor {
-  return typeof v === 'string' && ['indigo', 'brown', 'camellia'].includes(v)
+  return typeof v === 'string' && ['pink', 'amber', 'mint'].includes(v)
 }
 
 function isValidMode(v: unknown): v is ThemeMode {

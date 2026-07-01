@@ -1,6 +1,6 @@
 /**
  * Cottie 网站全局样式系统
- * 二维主题：颜色 (indigo/brown/camellia) × 模式 (light/dark)
+ * 二维主题：颜色 (pink/amber/mint) × 模式 (light/dark)
  */
 
 /* ===================== 共享变量 ===================== */
@@ -13,126 +13,129 @@
   --transition-slow: 0.5s ease;
 }
 
-/* ===================== 默认主题：捣蓝色 · 亮色 ===================== */
+/* ===================== 默认主题：粉色 · 亮色 ===================== */
 :root {
-  --primary: #91CFD5;
-  --primary-hover: #6BB5BD;
-  --primary-light: rgba(145, 207, 213, 0.12);
-  --primary-glow: rgba(145, 207, 213, 0.4);
-  --secondary: #B8E0E4;
-  --secondary-glow: rgba(184, 224, 228, 0.5);
-  --gradient-primary: linear-gradient(135deg, #91CFD5, #6BB5BD);
-  --gradient-secondary: linear-gradient(135deg, #B8E0E4, #91CFD5);
+  --primary: #FF66B2;
+  --primary-hover: #FF3385;
+  --primary-light: rgba(255, 102, 178, 0.12);
+  --primary-glow: rgba(255, 102, 178, 0.4);
+  --secondary: #FFB6D9;
+  --secondary-glow: rgba(255, 182, 217, 0.5);
+  --gradient-primary: linear-gradient(135deg, #FF66B2, #FF3385);
+  --gradient-secondary: linear-gradient(135deg, #FFB6D9, #FF66B2);
   --gradient-green: linear-gradient(135deg, #4CAF50, #45a049);
 
-  --bg-color: #E8F4F5;
-  --bg-main: #E8F4F5;
-  --bg-secondary: #F0F8F9;
-  --text-main: #1A4A4D;
-  --text-sub: #3D7A7D;
-  --hover-bg: rgba(145, 207, 213, 0.1);
+  --bg-color: #FFE6F2;
+  --bg-main: #FFE6F2;
+  --bg-secondary: #FFF5F9;
+  --text-main: #5A003A;
+  --text-sub: #B3005E;
+  --hover-bg: rgba(255, 102, 178, 0.1);
 
   --glass-bg: rgba(255, 255, 255, 0.75);
-  --glass-border: rgba(145, 207, 213, 0.2);
-  --glass-shadow: 0 8px 32px rgba(145, 207, 213, 0.1);
+  --glass-border: rgba(255, 102, 178, 0.2);
+  --glass-shadow: 0 8px 32px rgba(255, 102, 178, 0.1);
 
   --card-bg: rgba(255, 255, 255, 0.8);
-  --card-border: rgba(145, 207, 213, 0.15);
+  --card-border: rgba(255, 102, 178, 0.15);
 }
 
-/* ===================== 暗色模式基础（捣蓝色暗色） ===================== */
+/* ===================== 暗色模式基础（粉色暗色） ===================== */
 [data-mode='dark'] {
-  --bg-color: #113056;
-  --bg-main: #113056;
-  --bg-secondary: #183E63;
-  --text-main: #E0F0F2;
-  --text-sub: #91CFD5;
-  --hover-bg: rgba(145, 207, 213, 0.15);
+  --bg-color: #2D252A;
+  --bg-main: #2D252A;
+  --bg-secondary: #3A3136;
+  --text-main: #F0E0E5;
+  --text-sub: #FFC0D8;
+  --hover-bg: rgba(255, 102, 178, 0.15);
 
-  --glass-bg: rgba(17, 48, 86, 0.85);
-  --glass-border: rgba(145, 207, 213, 0.25);
+  --glass-bg: rgba(50, 42, 48, 0.85);
+  --glass-border: rgba(255, 102, 178, 0.25);
   --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 
-  --card-bg: rgba(17, 48, 86, 0.9);
-  --card-border: rgba(145, 207, 213, 0.2);
+  --card-bg: rgba(50, 42, 48, 0.9);
+  --card-border: rgba(255, 102, 178, 0.2);
+
+  --secondary: #FF8FC3;
+  --gradient-secondary: linear-gradient(135deg, #4D3A44, #3A2D34);
 }
 
-/* ===================== 颜色主题：凡戴克棕 ===================== */
-[data-color='brown'] {
-  --primary: #D8C7B5;
-  --primary-hover: #C4AE98;
-  --primary-light: rgba(216, 199, 181, 0.15);
-  --primary-glow: rgba(216, 199, 181, 0.4);
-  --secondary: #E5D9CC;
-  --secondary-glow: rgba(229, 217, 204, 0.5);
-  --gradient-primary: linear-gradient(135deg, #D8C7B5, #C4AE98);
-  --gradient-secondary: linear-gradient(135deg, #E5D9CC, #D8C7B5);
+/* ===================== 颜色主题：琥珀暖 ===================== */
+[data-color='amber'] {
+  --primary: #D4A373;
+  --primary-hover: #BC8A5F;
+  --primary-light: rgba(212, 163, 115, 0.12);
+  --primary-glow: rgba(212, 163, 115, 0.4);
+  --secondary: #E9D8C0;
+  --secondary-glow: rgba(233, 216, 192, 0.5);
+  --gradient-primary: linear-gradient(135deg, #D4A373, #BC8A5F);
+  --gradient-secondary: linear-gradient(135deg, #E9D8C0, #D4A373);
 
-  --bg-color: #F5EFE8;
-  --bg-main: #F5EFE8;
-  --bg-secondary: #FAF5F0;
-  --text-main: #3D2B1F;
-  --text-sub: #6B5342;
-  --hover-bg: rgba(216, 199, 181, 0.1);
+  --bg-color: #FEF3E8;
+  --bg-main: #FEF3E8;
+  --bg-secondary: #FFF8F0;
+  --text-main: #4A3520;
+  --text-sub: #8B6B4A;
+  --hover-bg: rgba(212, 163, 115, 0.1);
 
-  --glass-border: rgba(216, 199, 181, 0.2);
-  --glass-shadow: 0 8px 32px rgba(216, 199, 181, 0.1);
-  --card-border: rgba(216, 199, 181, 0.15);
+  --glass-border: rgba(212, 163, 115, 0.2);
+  --glass-shadow: 0 8px 32px rgba(212, 163, 115, 0.1);
+  --card-border: rgba(212, 163, 115, 0.15);
 }
 
-[data-color='brown'][data-mode='dark'] {
-  --bg-color: #492D22;
-  --bg-main: #492D22;
-  --bg-secondary: #5A3D32;
-  --text-main: #F0E8E0;
-  --text-sub: #D8C7B5;
-  --hover-bg: rgba(216, 199, 181, 0.15);
+[data-color='amber'][data-mode='dark'] {
+  --bg-color: #2C1810;
+  --bg-main: #2C1810;
+  --bg-secondary: #3D2820;
+  --text-main: #F0E6D8;
+  --text-sub: #D4A373;
+  --hover-bg: rgba(212, 163, 115, 0.15);
 
-  --glass-bg: rgba(73, 45, 34, 0.85);
-  --glass-border: rgba(216, 199, 181, 0.25);
-  --card-bg: rgba(73, 45, 34, 0.9);
-  --card-border: rgba(216, 199, 181, 0.2);
+  --glass-bg: rgba(44, 24, 16, 0.85);
+  --glass-border: rgba(212, 163, 115, 0.25);
+  --card-bg: rgba(44, 24, 16, 0.9);
+  --card-border: rgba(212, 163, 115, 0.2);
 
-  --secondary: #C4AE98;
+  --secondary: #BC8A5F;
 }
 
-/* ===================== 颜色主题：茶花红 ===================== */
-[data-color='camellia'] {
-  --primary: #E72D48;
-  --primary-hover: #C41E36;
-  --primary-light: rgba(231, 45, 72, 0.12);
-  --primary-glow: rgba(231, 45, 72, 0.4);
-  --secondary: #F08A9A;
-  --secondary-glow: rgba(240, 138, 154, 0.5);
-  --gradient-primary: linear-gradient(135deg, #E72D48, #C41E36);
-  --gradient-secondary: linear-gradient(135deg, #F08A9A, #E72D48);
+/* ===================== 颜色主题：薄荷 ===================== */
+[data-color='mint'] {
+  --primary: #4ECDC4;
+  --primary-hover: #3DBDB4;
+  --primary-light: rgba(78, 205, 196, 0.12);
+  --primary-glow: rgba(78, 205, 196, 0.4);
+  --secondary: #95E1D3;
+  --secondary-glow: rgba(149, 225, 211, 0.5);
+  --gradient-primary: linear-gradient(135deg, #4ECDC4, #3DBDB4);
+  --gradient-secondary: linear-gradient(135deg, #95E1D3, #4ECDC4);
 
-  --bg-color: #F1DDDF;
-  --bg-main: #F1DDDF;
-  --bg-secondary: #F7E9EB;
-  --text-main: #4A1B22;
-  --text-sub: #8C3342;
-  --hover-bg: rgba(231, 45, 72, 0.1);
+  --bg-color: #F0FCFA;
+  --bg-main: #F0FCFA;
+  --bg-secondary: #F5FFFE;
+  --text-main: #1A4A4D;
+  --text-sub: #3D8A8A;
+  --hover-bg: rgba(78, 205, 196, 0.1);
 
-  --glass-border: rgba(231, 45, 72, 0.2);
-  --glass-shadow: 0 8px 32px rgba(231, 45, 72, 0.1);
-  --card-border: rgba(231, 45, 72, 0.15);
+  --glass-border: rgba(78, 205, 196, 0.2);
+  --glass-shadow: 0 8px 32px rgba(78, 205, 196, 0.1);
+  --card-border: rgba(78, 205, 196, 0.15);
 }
 
-[data-color='camellia'][data-mode='dark'] {
-  --bg-color: #2D1419;
-  --bg-main: #2D1419;
-  --bg-secondary: #3D1F24;
-  --text-main: #F0DDE0;
-  --text-sub: #F08A9A;
-  --hover-bg: rgba(231, 45, 72, 0.15);
+[data-color='mint'][data-mode='dark'] {
+  --bg-color: #0A2A2A;
+  --bg-main: #0A2A2A;
+  --bg-secondary: #123A3A;
+  --text-main: #E0F5F0;
+  --text-sub: #7DD5CD;
+  --hover-bg: rgba(78, 205, 196, 0.15);
 
-  --glass-bg: rgba(45, 20, 25, 0.85);
-  --glass-border: rgba(231, 45, 72, 0.25);
-  --card-bg: rgba(45, 20, 25, 0.9);
-  --card-border: rgba(231, 45, 72, 0.2);
+  --glass-bg: rgba(10, 42, 42, 0.85);
+  --glass-border: rgba(78, 205, 196, 0.25);
+  --card-bg: rgba(10, 42, 42, 0.9);
+  --card-border: rgba(78, 205, 196, 0.2);
 
-  --secondary: #C41E36;
+  --secondary: #3DBDB4;
 }
 
 /* ===================== 动画 ===================== */

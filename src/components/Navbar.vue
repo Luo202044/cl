@@ -362,16 +362,16 @@ function selectColor(color: ThemeColor) {
   box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
 }
 
-.color-swatch.indigo {
-  background: #91CFD5;
+.color-swatch.pink {
+  background: #FF66B2;
 }
 
-.color-swatch.brown {
-  background: #D8C7B5;
+.color-swatch.amber {
+  background: #D4A373;
 }
 
-.color-swatch.camellia {
-  background: #E72D48;
+.color-swatch.mint {
+  background: #4ECDC4;
 }
 
 /* ========== 移动端 ========== */

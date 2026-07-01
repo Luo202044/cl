@@ -1,4 +1,4 @@
-export type ThemeColor = 'indigo' | 'brown' | 'camellia'
+export type ThemeColor = 'pink' | 'amber' | 'mint'
 export type ThemeMode = 'light' | 'dark'
 
 export interface ThemeColorPreset {
@@ -13,42 +13,42 @@ export interface ThemeColorPreset {
 }
 
 export const themeColorPresets: Record<ThemeColor, ThemeColorPreset> = {
-  indigo: {
-    primary: '#91CFD5',
-    primaryHover: '#6BB5BD',
-    primaryLight: 'rgba(145, 207, 213, 0.12)',
-    primaryGlow: 'rgba(145, 207, 213, 0.4)',
-    secondary: '#B8E0E4',
-    secondaryGlow: 'rgba(184, 224, 228, 0.5)',
-    gradientPrimary: 'linear-gradient(135deg, #91CFD5, #6BB5BD)',
-    gradientSecondary: 'linear-gradient(135deg, #B8E0E4, #91CFD5)',
+  pink: {
+    primary: '#FF66B2',
+    primaryHover: '#FF3385',
+    primaryLight: 'rgba(255, 102, 178, 0.12)',
+    primaryGlow: 'rgba(255, 102, 178, 0.4)',
+    secondary: '#FFB6D9',
+    secondaryGlow: 'rgba(255, 182, 217, 0.5)',
+    gradientPrimary: 'linear-gradient(135deg, #FF66B2, #FF3385)',
+    gradientSecondary: 'linear-gradient(135deg, #FFB6D9, #FF66B2)',
   },
-  brown: {
-    primary: '#D8C7B5',
-    primaryHover: '#C4AE98',
-    primaryLight: 'rgba(216, 199, 181, 0.15)',
-    primaryGlow: 'rgba(216, 199, 181, 0.4)',
-    secondary: '#E5D9CC',
-    secondaryGlow: 'rgba(229, 217, 204, 0.5)',
-    gradientPrimary: 'linear-gradient(135deg, #D8C7B5, #C4AE98)',
-    gradientSecondary: 'linear-gradient(135deg, #E5D9CC, #D8C7B5)',
+  amber: {
+    primary: '#D4A373',
+    primaryHover: '#BC8A5F',
+    primaryLight: 'rgba(212, 163, 115, 0.12)',
+    primaryGlow: 'rgba(212, 163, 115, 0.4)',
+    secondary: '#E9D8C0',
+    secondaryGlow: 'rgba(233, 216, 192, 0.5)',
+    gradientPrimary: 'linear-gradient(135deg, #D4A373, #BC8A5F)',
+    gradientSecondary: 'linear-gradient(135deg, #E9D8C0, #D4A373)',
   },
-  camellia: {
-    primary: '#E72D48',
-    primaryHover: '#C41E36',
-    primaryLight: 'rgba(231, 45, 72, 0.12)',
-    primaryGlow: 'rgba(231, 45, 72, 0.4)',
-    secondary: '#F08A9A',
-    secondaryGlow: 'rgba(240, 138, 154, 0.5)',
-    gradientPrimary: 'linear-gradient(135deg, #E72D48, #C41E36)',
-    gradientSecondary: 'linear-gradient(135deg, #F08A9A, #E72D48)',
+  mint: {
+    primary: '#4ECDC4',
+    primaryHover: '#3DBDB4',
+    primaryLight: 'rgba(78, 205, 196, 0.12)',
+    primaryGlow: 'rgba(78, 205, 196, 0.4)',
+    secondary: '#95E1D3',
+    secondaryGlow: 'rgba(149, 225, 211, 0.5)',
+    gradientPrimary: 'linear-gradient(135deg, #4ECDC4, #3DBDB4)',
+    gradientSecondary: 'linear-gradient(135deg, #95E1D3, #4ECDC4)',
   },
 }
 
-export const themeColors: ThemeColor[] = ['indigo', 'brown', 'camellia']
+export const themeColors: ThemeColor[] = ['pink', 'amber', 'mint']
 
 export const colorLabels: Record<ThemeColor, string> = {
-  indigo: '捣蓝色',
-  brown: '凡戴克棕',
-  camellia: '茶花红',
+  pink: '粉色',
+  amber: '琥珀暖',
+  mint: '薄荷',
 }
