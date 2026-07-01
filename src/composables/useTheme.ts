@@ -1,35 +1,80 @@
 import { ref, watch } from 'vue'
+import type { ThemeColor, ThemeMode } from '../config/theme'
 
-type Theme = 'light' | 'dark'
+const STORAGE_KEY = 'cottie-theme-config'
 
-const THEME_KEY = 'cottie-theme'
+interface ThemeConfig {
+  color: ThemeColor
+  mode: ThemeMode
+}
 
-const currentTheme = ref<Theme>((localStorage.getItem(THEME_KEY) as Theme) || 'light')
+function loadConfig(): ThemeConfig {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY)
+    if (raw) {
+      const parsed = JSON.parse(raw)
+      if (isValidColor(parsed.color) && isValidMode(parsed.mode)) {
+        return parsed as ThemeConfig
+      }
+    }
+  } catch { /* invalid json, fall through */ }
+  return { color: 'indigo', mode: detectSystemMode() }
+}
 
-function applyTheme(theme: Theme) {
-  document.documentElement.setAttribute('data-theme', theme)
-  localStorage.setItem(THEME_KEY, theme)
+function detectSystemMode(): ThemeMode {
+  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    return 'dark'
+  }
+  return 'light'
+}
+
+function isValidColor(v: unknown): v is ThemeColor {
+  return typeof v === 'string' && ['indigo', 'brown', 'camellia'].includes(v)
+}
+
+function isValidMode(v: unknown): v is ThemeMode {
+  return v === 'light' || v === 'dark'
+}
+
+const config = ref<ThemeConfig>(loadConfig())
+
+function applyTheme() {
+  document.documentElement.setAttribute('data-color', config.value.color)
+  document.documentElement.setAttribute('data-mode', config.value.mode)
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(config.value))
 }
 
 export function useTheme() {
-  const toggleTheme = () => {
-    currentTheme.value = currentTheme.value === 'light' ? 'dark' : 'light'
-    applyTheme(currentTheme.value)
+  const setThemeColor = (color: ThemeColor) => {
+    config.value.color = color
+    applyTheme()
   }
 
-  const setTheme = (theme: Theme) => {
-    currentTheme.value = theme
-    applyTheme(theme)
+  const setThemeMode = (mode: ThemeMode) => {
+    config.value.mode = mode
+    applyTheme()
   }
 
-  watch(currentTheme, (newTheme) => {
-    applyTheme(newTheme)
-  }, { immediate: true })
+  const toggleMode = () => {
+    config.value.mode = config.value.mode === 'light' ? 'dark' : 'light'
+    applyTheme()
+  }
+
+  watch(config, applyTheme, { immediate: true, deep: true })
 
   return {
-    currentTheme,
-    toggleTheme,
-    setTheme,
-    isDark: () => currentTheme.value === 'dark'
+    config,
+    setThemeColor,
+    setThemeMode,
+    toggleMode,
+    isDark: () => config.value.mode === 'dark',
   }
 }
+
+/** Sync with system color scheme changes when user hasn't explicitly set a mode */
+const systemModeMedia = window.matchMedia('(prefers-color-scheme: dark)')
+systemModeMedia.addEventListener('change', (e) => {
+  if (!localStorage.getItem(STORAGE_KEY)) {
+    config.value.mode = e.matches ? 'dark' : 'light'
+  }
+})

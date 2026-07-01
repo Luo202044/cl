@@ -1,69 +1,141 @@
 /**
  * Cottie 网站全局样式系统
- * 基于 animations.css，保留粉色主题
+ * 二维主题：颜色 (indigo/brown/camellia) × 模式 (light/dark)
  */
 
+/* ===================== 共享变量 ===================== */
 :root {
-  --primary: #FF66B2;
-  --primary-hover: #FF3385;
-  --primary-light: rgba(255, 102, 178, 0.12);
-  --primary-glow: rgba(255, 102, 178, 0.4);
-  --secondary: #FFB6D9;
-  --secondary-glow: rgba(255, 182, 217, 0.5);
-  
-  --bg-color: #FFE6F2;
-  --bg-main: #FFE6F2;
-  --bg-secondary: #fff5f9;
-  --text-main: #5A003A;
-  --text-sub: #B3005E;
-  --hover-bg: rgba(255, 102, 178, 0.1);
-  
-  --glass-bg: rgba(255, 255, 255, 0.75);
-  --glass-border: rgba(255, 102, 178, 0.2);
-  --glass-shadow: 0 8px 32px rgba(255, 102, 178, 0.1);
-  
-  --card-bg: rgba(255, 255, 255, 0.8);
-  --card-border: rgba(255, 102, 178, 0.15);
-  
-  --gradient-primary: linear-gradient(135deg, #FF66B2, #FF3385);
-  --gradient-secondary: linear-gradient(135deg, #FFB6D9, #FF66B2);
-  --gradient-green: linear-gradient(135deg, #4CAF50, #45a049);
-  
   --border-radius: 16px;
   --border-radius-sm: 12px;
   --border-radius-lg: 24px;
-  
   --transition-fast: 0.2s ease;
   --transition-normal: 0.3s ease;
   --transition-slow: 0.5s ease;
 }
 
-[data-theme='dark'] {
-  --primary: #FF66B2;
-  --primary-hover: #FF3385;
-  --primary-light: rgba(255, 102, 178, 0.2);
-  --primary-glow: rgba(255, 102, 178, 0.4);
-  --secondary: #FF8FC3;
-  --secondary-glow: rgba(255, 143, 195, 0.5);
+/* ===================== 默认主题：捣蓝色 · 亮色 ===================== */
+:root {
+  --primary: #91CFD5;
+  --primary-hover: #6BB5BD;
+  --primary-light: rgba(145, 207, 213, 0.12);
+  --primary-glow: rgba(145, 207, 213, 0.4);
+  --secondary: #B8E0E4;
+  --secondary-glow: rgba(184, 224, 228, 0.5);
+  --gradient-primary: linear-gradient(135deg, #91CFD5, #6BB5BD);
+  --gradient-secondary: linear-gradient(135deg, #B8E0E4, #91CFD5);
+  --gradient-green: linear-gradient(135deg, #4CAF50, #45a049);
 
-  --bg-color: #2d252a;
-  --bg-main: #2d252a;
-  --bg-secondary: #3a3136;
-  --text-main: #f0e0e5;
-  --text-sub: #ffc0d8;
-  --hover-bg: rgba(255, 102, 178, 0.15);
+  --bg-color: #E8F4F5;
+  --bg-main: #E8F4F5;
+  --bg-secondary: #F0F8F9;
+  --text-main: #1A4A4D;
+  --text-sub: #3D7A7D;
+  --hover-bg: rgba(145, 207, 213, 0.1);
 
-  --glass-bg: rgba(50, 42, 48, 0.85);
-  --glass-border: rgba(255, 102, 178, 0.25);
+  --glass-bg: rgba(255, 255, 255, 0.75);
+  --glass-border: rgba(145, 207, 213, 0.2);
+  --glass-shadow: 0 8px 32px rgba(145, 207, 213, 0.1);
+
+  --card-bg: rgba(255, 255, 255, 0.8);
+  --card-border: rgba(145, 207, 213, 0.15);
+}
+
+/* ===================== 暗色模式基础（捣蓝色暗色） ===================== */
+[data-mode='dark'] {
+  --bg-color: #113056;
+  --bg-main: #113056;
+  --bg-secondary: #183E63;
+  --text-main: #E0F0F2;
+  --text-sub: #91CFD5;
+  --hover-bg: rgba(145, 207, 213, 0.15);
+
+  --glass-bg: rgba(17, 48, 86, 0.85);
+  --glass-border: rgba(145, 207, 213, 0.25);
   --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 
-  --card-bg: rgba(50, 42, 48, 0.9);
-  --card-border: rgba(255, 102, 178, 0.2);
-
-  --gradient-primary: linear-gradient(135deg, #FF66B2, #FF3385);
-  --gradient-secondary: linear-gradient(135deg, #4d3a44, #3a2d34);
-  --gradient-green: linear-gradient(135deg, #4CAF50, #45a049);
+  --card-bg: rgba(17, 48, 86, 0.9);
+  --card-border: rgba(145, 207, 213, 0.2);
 }
+
+/* ===================== 颜色主题：凡戴克棕 ===================== */
+[data-color='brown'] {
+  --primary: #D8C7B5;
+  --primary-hover: #C4AE98;
+  --primary-light: rgba(216, 199, 181, 0.15);
+  --primary-glow: rgba(216, 199, 181, 0.4);
+  --secondary: #E5D9CC;
+  --secondary-glow: rgba(229, 217, 204, 0.5);
+  --gradient-primary: linear-gradient(135deg, #D8C7B5, #C4AE98);
+  --gradient-secondary: linear-gradient(135deg, #E5D9CC, #D8C7B5);
+
+  --bg-color: #F5EFE8;
+  --bg-main: #F5EFE8;
+  --bg-secondary: #FAF5F0;
+  --text-main: #3D2B1F;
+  --text-sub: #6B5342;
+  --hover-bg: rgba(216, 199, 181, 0.1);
+
+  --glass-border: rgba(216, 199, 181, 0.2);
+  --glass-shadow: 0 8px 32px rgba(216, 199, 181, 0.1);
+  --card-border: rgba(216, 199, 181, 0.15);
+}
+
+[data-color='brown'][data-mode='dark'] {
+  --bg-color: #492D22;
+  --bg-main: #492D22;
+  --bg-secondary: #5A3D32;
+  --text-main: #F0E8E0;
+  --text-sub: #D8C7B5;
+  --hover-bg: rgba(216, 199, 181, 0.15);
+
+  --glass-bg: rgba(73, 45, 34, 0.85);
+  --glass-border: rgba(216, 199, 181, 0.25);
+  --card-bg: rgba(73, 45, 34, 0.9);
+  --card-border: rgba(216, 199, 181, 0.2);
+
+  --secondary: #C4AE98;
+}
+
+/* ===================== 颜色主题：茶花红 ===================== */
+[data-color='camellia'] {
+  --primary: #E72D48;
+  --primary-hover: #C41E36;
+  --primary-light: rgba(231, 45, 72, 0.12);
+  --primary-glow: rgba(231, 45, 72, 0.4);
+  --secondary: #F08A9A;
+  --secondary-glow: rgba(240, 138, 154, 0.5);
+  --gradient-primary: linear-gradient(135deg, #E72D48, #C41E36);
+  --gradient-secondary: linear-gradient(135deg, #F08A9A, #E72D48);
+
+  --bg-color: #F1DDDF;
+  --bg-main: #F1DDDF;
+  --bg-secondary: #F7E9EB;
+  --text-main: #4A1B22;
+  --text-sub: #8C3342;
+  --hover-bg: rgba(231, 45, 72, 0.1);
+
+  --glass-border: rgba(231, 45, 72, 0.2);
+  --glass-shadow: 0 8px 32px rgba(231, 45, 72, 0.1);
+  --card-border: rgba(231, 45, 72, 0.15);
+}
+
+[data-color='camellia'][data-mode='dark'] {
+  --bg-color: #2D1419;
+  --bg-main: #2D1419;
+  --bg-secondary: #3D1F24;
+  --text-main: #F0DDE0;
+  --text-sub: #F08A9A;
+  --hover-bg: rgba(231, 45, 72, 0.15);
+
+  --glass-bg: rgba(45, 20, 25, 0.85);
+  --glass-border: rgba(231, 45, 72, 0.25);
+  --card-bg: rgba(45, 20, 25, 0.9);
+  --card-border: rgba(231, 45, 72, 0.2);
+
+  --secondary: #C41E36;
+}
+
+/* ===================== 动画 ===================== */
 
 @keyframes glass-entry-pop {
   0% {
@@ -150,6 +222,8 @@
 .anim-9 { animation-delay: 0.8s; }
 .anim-10 { animation-delay: 0.9s; }
 
+/* ===================== 滚动条 ===================== */
+
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -170,6 +244,8 @@
 ::-webkit-scrollbar-thumb:hover {
   background-color: var(--primary);
 }
+
+/* ===================== 基础样式 ===================== */
 
 * {
   margin: 0;
@@ -208,6 +284,8 @@ img {
   max-width: 100%;
   height: auto;
 }
+
+/* ===================== 通用组件 ===================== */
 
 .glass-panel {
   background: var(--glass-bg);
@@ -325,23 +403,25 @@ img {
   margin-bottom: 2rem;
 }
 
+/* ===================== 响应式 ===================== */
+
 @media (max-width: 768px) {
   .container {
     padding: 0 16px;
   }
-  
+
   .hero-section-base {
     padding: 2rem 1rem;
   }
-  
+
   .hero-section-base h2 {
     font-size: 1.75rem;
   }
-  
+
   .section-title {
     font-size: 1.5rem;
   }
-  
+
   .grid-cards {
     grid-template-columns: 1fr;
   }
@@ -351,11 +431,13 @@ img {
   .hero-section-base h2 {
     font-size: 1.5rem;
   }
-  
+
   .card {
     padding: 16px;
   }
 }
+
+/* ===================== 过渡动画 ===================== */
 
 .fade-enter-active,
 .fade-leave-active {

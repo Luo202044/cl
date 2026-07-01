@@ -1,15 +1,10 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
 import Navbar from './components/Navbar.vue'
 import Footer from './components/Footer.vue'
 import MusicPlayer from './components/MusicPlayer.vue'
 import { useTheme } from './composables/useTheme'
 
-const { currentTheme } = useTheme()
-
-onMounted(() => {
-  document.documentElement.setAttribute('data-theme', currentTheme.value)
-})
+useTheme()
 </script>
 
 <template>
