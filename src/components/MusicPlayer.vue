@@ -509,9 +509,8 @@ onMounted(() => {
   color: var(--text-main);
   opacity: 0.35;
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .lyric-line.active {
