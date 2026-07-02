@@ -715,6 +715,7 @@ onMounted(() => {
   height: 100%;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 .panel-header {
@@ -802,7 +803,8 @@ onMounted(() => {
 }
 
 .panel-content {
-  flex: 1;
+  flex: 1 1 0;
+  min-height: 0;
   overflow-y: auto;
   padding: 8px;
 }
@@ -923,7 +925,8 @@ onMounted(() => {
 }
 
 .lyrics-scroll {
-  flex: 1;
+  flex: 1 1 0;
+  min-height: 0;
   overflow: hidden;
   padding: 14px;
   mask-image: linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%);
@@ -931,9 +934,25 @@ onMounted(() => {
 }
 
 .lyrics-list {
-  padding: 130px 0;
+  height: 100%;
+  overflow-y: auto;
+  padding: 50% 14px;
+  margin: -50% 0;
   transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  will-change: transform;
+  box-sizing: content-box;
+}
+
+.lyrics-list::-webkit-scrollbar {
+  width: 4px;
+}
+
+.lyrics-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.lyrics-list::-webkit-scrollbar-thumb {
+  border-radius: 2px;
+  background: var(--primary);
 }
 
 .lyrics-item {
