@@ -8,7 +8,7 @@ useTheme()
 </script>
 
 <template>
-  <div class="app">
+  <div class="app" style="background-color: #FFE6F2;">
     <Navbar />
     <router-view v-slot="{ Component }">
       <Transition name="fade" mode="out-in">
