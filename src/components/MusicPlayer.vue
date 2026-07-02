@@ -35,6 +35,8 @@ const showLyrics = ref(false)
 const lyricsContainer = ref<HTMLElement | null>(null)
 const previewLyricsContainer = ref<HTMLElement | null>(null)
 const coverImageError = ref(false)
+const previewOffset = ref(0)
+const lyricsOffset = ref(0)
 
 const isPanelExpanded = computed(() => isExpanded.value || showPlaylist.value || showLyrics.value)
 
@@ -107,14 +109,16 @@ function scrollLyricsPanelToActive() {
   nextTick(() => {
     if (!lyricsContainer.value) return
     const activeEl = lyricsContainer.value.querySelector('.lyrics-item.active') as HTMLElement | null
-    if (!activeEl) return
+    if (!activeEl) {
+      lyricsOffset.value = 0
+      return
+    }
 
     const container = lyricsContainer.value
     const containerHeight = container.clientHeight
     const elementTop = activeEl.offsetTop
     const elementHeight = activeEl.clientHeight
-    const target = elementTop - containerHeight / 2 + elementHeight / 2
-    container.scrollTo({ top: Math.max(target, 0), behavior: 'smooth' })
+    lyricsOffset.value = -(elementTop - containerHeight / 2 + elementHeight / 2)
   })
 }
 
@@ -125,15 +129,14 @@ function scrollPreviewToActive() {
     const activeEl = container.querySelector('.preview-line.active') as HTMLElement | null
 
     if (!activeEl) {
-      container.scrollTo({ top: 0, behavior: 'smooth' })
+      previewOffset.value = 0
       return
     }
 
     const containerHeight = container.clientHeight
     const elementTop = activeEl.offsetTop
     const elementHeight = activeEl.clientHeight
-    const target = elementTop - containerHeight / 2 + elementHeight / 2
-    container.scrollTo({ top: Math.max(target, 0), behavior: 'smooth' })
+    previewOffset.value = -(elementTop - containerHeight / 2 + elementHeight / 2)
   })
 }
 
@@ -197,7 +200,7 @@ onMounted(() => {
 
         <div class="lyrics-preview">
           <div v-if="lyrics.length > 0" ref="previewLyricsContainer" class="lyrics-preview-scroll">
-            <div class="lyrics-preview-track">
+            <div class="lyrics-preview-track" :style="{ transform: `translateY(${previewOffset}px)` }">
               <div
                 v-for="(line, index) in lyrics"
                 :key="`${index}-${line.time}`"
@@ -321,7 +324,7 @@ onMounted(() => {
         </div>
 
         <div ref="lyricsContainer" class="lyrics-scroll">
-          <div v-if="lyrics.length > 0" class="lyrics-list">
+          <div v-if="lyrics.length > 0" class="lyrics-list" :style="{ transform: `translateY(${lyricsOffset}px)` }">
             <div
               v-for="(line, index) in lyrics"
               :key="`${line.time}-${index}`"
@@ -478,11 +481,10 @@ onMounted(() => {
 .lyrics-preview-scroll {
   height: 108px;
   width: 100%;
-  overflow-y: auto;
-  scroll-behavior: smooth;
+  overflow: hidden;
   pointer-events: none;
-  mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
 }
 
 .lyrics-preview-scroll::-webkit-scrollbar {
@@ -491,6 +493,8 @@ onMounted(() => {
 
 .lyrics-preview-track {
   padding: 40px 0;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
 }
 
 .lyric-line {
@@ -504,7 +508,7 @@ onMounted(() => {
   line-height: 1.4;
   color: var(--text-main);
   opacity: 0.35;
-  transition: all 0.25s ease;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -515,6 +519,9 @@ onMounted(() => {
   color: var(--primary);
   font-weight: 700;
   font-size: 15px;
+  transform: scale(1.08);
+  text-shadow: 0 0 20px var(--primary-glow);
+  letter-spacing: 0.5px;
 }
 
 .no-lyrics-text {
@@ -917,13 +924,16 @@ onMounted(() => {
 
 .lyrics-scroll {
   flex: 1;
-  overflow-y: auto;
-  scroll-behavior: smooth;
+  overflow: hidden;
   padding: 14px;
+  mask-image: linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%);
 }
 
 .lyrics-list {
   padding: 130px 0;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
 }
 
 .lyrics-item {
@@ -934,7 +944,7 @@ onMounted(() => {
   line-height: 1.45;
   color: var(--text-main);
   opacity: 0.38;
-  transition: all 0.25s ease;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .lyrics-item.active {
@@ -942,6 +952,9 @@ onMounted(() => {
   font-weight: 700;
   color: var(--primary);
   opacity: 1;
+  transform: scale(1.06);
+  text-shadow: 0 0 24px var(--primary-glow);
+  letter-spacing: 0.5px;
 }
 
 .empty-state {
@@ -963,18 +976,15 @@ onMounted(() => {
   font-size: 13px;
 }
 
-.panel-content::-webkit-scrollbar,
-.lyrics-scroll::-webkit-scrollbar {
+.panel-content::-webkit-scrollbar {
   width: 4px;
 }
 
-.panel-content::-webkit-scrollbar-track,
-.lyrics-scroll::-webkit-scrollbar-track {
+.panel-content::-webkit-scrollbar-track {
   background: transparent;
 }
 
-.panel-content::-webkit-scrollbar-thumb,
-.lyrics-scroll::-webkit-scrollbar-thumb {
+.panel-content::-webkit-scrollbar-thumb {
   border-radius: 2px;
   background: var(--primary);
 }
