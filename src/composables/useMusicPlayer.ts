@@ -25,9 +25,25 @@ function parseLRC(lrcContent: string): LyricLine[] {
   const lrcLines = lrcContent.split('\n')
 
   for (const line of lrcLines) {
-    if (line.startsWith('{') || line.trim() === '') continue
+    const trimmed = line.trim()
+    if (!trimmed) continue
 
-    const match = line.match(/\[(\d{2}):(\d{2})[.:](\d{2,3})\](.*)/)
+    // 网易云音乐 JSON 格式: {"t":<ms>,"c":[{"tx":"<text>"},...]}
+    if (trimmed.startsWith('{') && trimmed.includes('"c"')) {
+      try {
+        const json = JSON.parse(trimmed)
+        if (typeof json.t === 'number' && Array.isArray(json.c)) {
+          const text = json.c.map((item: any) => item.tx || '').join('').trim()
+          if (text) {
+            lines.push({ time: json.t / 1000, text })
+          }
+          continue
+        }
+      } catch { /* not valid JSON, fall through to standard format */ }
+    }
+
+    // 标准 LRC 格式: [mm:ss.xx]text
+    const match = trimmed.match(/\[(\d{2}):(\d{2})[.:](\d{2,3})\](.*)/)
     if (!match) continue
 
     const minutes = Number.parseInt(match[1] ?? '0', 10)
